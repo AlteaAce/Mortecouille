@@ -22,10 +22,11 @@ logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
 log = logging.getLogger(__name__)
 
 # ---------------------------------------------------------------------------
-# Clés API (lues depuis les variables d'environnement — voir README)
+# Clés API (lues depuis les variables d'environnement)
 # ---------------------------------------------------------------------------
 GOOGLE_API_KEY = os.environ.get("GOOGLE_API_KEY", "")
 GOOGLE_CSE_ID  = os.environ.get("GOOGLE_CSE_ID", "")
+SERPAPI_KEY    = os.environ.get("SERPAPI_KEY", "")
 
 # ---------------------------------------------------------------------------
 # Mots-clés de recherche
@@ -37,7 +38,6 @@ KEYWORDS = [
     "fête du château", "fest auf der burg",
     "tournoi", "Turnier",
     "joutes", "Tjost",
-    # Châteaux connus en Suisse
     "Château de Chillon", "Chillon",
     "Château de Gruyères", "Gruyères",
     "Château de Grandson", "Grandson",
@@ -135,13 +135,112 @@ def get(url: str) -> requests.Response | None:
         return None
 
 
+def extract_events_from_results(items: list[dict], source: str) -> list[dict]:
+    """Transforme une liste de résultats de recherche en événements."""
+    events = []
+    for item in items:
+        title   = item.get("title", "")
+        snippet = item.get("snippet", "") or ""
+        link    = item.get("link", "")
+
+        if not contains_keyword(title + " " + snippet):
+            continue
+
+        date_match = re.search(r"(\d{1,2}[./]\d{1,2}[./]\d{4})", snippet)
+        date_str = normalize_date(date_match.group(1)) if date_match else None
+        if not date_str:
+            date_str = normalize_date(snippet)
+
+        events.append({
+            "name":       title,
+            "date_start": date_str,
+            "date_end":   None,
+            "location":   "Suisse",
+            "url":        link,
+            "source":     source,
+        })
+    return events
+
+
+# ---------------------------------------------------------------------------
+# Source : SerpApi (Google Search)
+# ---------------------------------------------------------------------------
+def scrape_serpapi() -> list[dict]:
+    """
+    SerpApi — Google Search sans blocage d'IP.
+    100 recherches gratuites/mois sur serpapi.com
+    Nécessite SERPAPI_KEY dans les variables d'environnement.
+    """
+    if not SERPAPI_KEY:
+        log.warning("SerpApi ignoré : SERPAPI_KEY manquant.")
+        return []
+
+    events = []
+    current_year = date.today().year
+    next_year = current_year + 1
+
+    search_queries = [
+        f"fête médiévale Suisse {current_year}",
+        f"fête médiévale Suisse {next_year}",
+        f"marché médiéval Suisse {current_year}",
+        f"Mittelalterfest Schweiz {current_year}",
+        f"tournoi chevaliers Suisse {current_year}",
+        f"joutes médiévales Suisse {current_year}",
+        f"Château Chillon événement {current_year}",
+        f"Schloss Kyburg Mittelalterfest {current_year}",
+        f"Schloss Lenzburg fest {current_year}",
+        f"Château Grandson fête {current_year}",
+        f"Château Gruyères événement {current_year}",
+        f"Schloss Thun Veranstaltung {current_year}",
+    ]
+
+    base_url = "https://serpapi.com/search"
+
+    for query in search_queries:
+        params = {
+            "api_key": SERPAPI_KEY,
+            "engine":  "google",
+            "q":       query,
+            "gl":      "ch",
+            "hl":      "fr",
+            "num":     10,
+        }
+        url = base_url + "?" + "&".join(
+            f"{k}={quote_plus(str(v))}" for k, v in params.items()
+        )
+        r = get(url)
+        if not r:
+            continue
+
+        try:
+            data = r.json()
+
+            if "error" in data:
+                log.warning(f"SerpApi erreur : {data['error']}")
+                break
+
+            # Résultats organiques
+            items = [
+                {"title": r.get("title", ""), "snippet": r.get("snippet", ""), "link": r.get("link", "")}
+                for r in data.get("organic_results", [])
+            ]
+            events.extend(extract_events_from_results(items, "SerpApi"))
+
+        except Exception as e:
+            log.warning(f"SerpApi parse error pour '{query}': {e}")
+
+        time.sleep(SLEEP_BETWEEN)
+
+    log.info(f"SerpApi → {len(events)} événements")
+    return events
+
+
 # ---------------------------------------------------------------------------
 # Source : Google Custom Search API
 # ---------------------------------------------------------------------------
 def scrape_google_cse() -> list[dict]:
     """
-    Google Custom Search — recherche les événements médiévaux en Suisse.
-    100 requêtes gratuites/jour, 10 résultats par requête.
+    Google Custom Search API.
     Nécessite GOOGLE_API_KEY et GOOGLE_CSE_ID dans les variables d'environnement.
     """
     if not GOOGLE_API_KEY or not GOOGLE_CSE_ID:
@@ -188,37 +287,15 @@ def scrape_google_cse() -> list[dict]:
         try:
             data = r.json()
 
-            # Quota dépassé
             if "error" in data:
                 log.warning(f"Google CSE erreur : {data['error'].get('message', '')}")
                 break
 
-            for item in data.get("items", []):
-                title   = item.get("title", "")
-                snippet = item.get("snippet", "") or ""
-                link    = item.get("link", "")
-
-                if not contains_keyword(title + " " + snippet):
-                    continue
-
-                # Tente d'extraire une date depuis le snippet
-                date_match = re.search(
-                    r"(\d{1,2}[./]\d{1,2}[./]\d{4})", snippet
-                )
-                date_str = normalize_date(date_match.group(1)) if date_match else None
-
-                # Essaie aussi le format YYYY-MM-DD dans le snippet
-                if not date_str:
-                    date_str = normalize_date(snippet)
-
-                events.append({
-                    "name":       title,
-                    "date_start": date_str,
-                    "date_end":   None,
-                    "location":   "Suisse",
-                    "url":        link,
-                    "source":     "Google Search",
-                })
+            items = [
+                {"title": i.get("title", ""), "snippet": i.get("snippet", ""), "link": i.get("link", "")}
+                for i in data.get("items", [])
+            ]
+            events.extend(extract_events_from_results(items, "Google Search"))
 
         except Exception as e:
             log.warning(f"Google CSE parse error pour '{query}': {e}")
@@ -326,7 +403,6 @@ def scrape_agenda_ch() -> list[dict]:
 
 
 def _scrape_generic(url: str, location: str, source: str) -> list[dict]:
-    """Scraper générique pour les agendas de châteaux."""
     events = []
     r = get(url)
     if not r:
@@ -396,7 +472,7 @@ def scrape_castelgrande_bellinzona() -> list[dict]:
 def manual_events() -> list[dict]:
     """
     Événements vérifiés manuellement.
-    Ajoute ici les événements que tu as confirmés sur les sites officiels.
+    Ajoute ici les événements confirmés sur les sites officiels.
     Format des dates : YYYY-MM-DD
     """
     return [
@@ -420,7 +496,8 @@ def run() -> None:
     all_events: list[dict] = []
 
     scrapers = [
-        scrape_google_cse,          # Google Custom Search (si clés disponibles)
+        scrape_serpapi,             # SerpApi — Google Search sans blocage (priorité 1)
+        scrape_google_cse,          # Google Custom Search API (priorité 2, si disponible)
         scrape_openagenda,
         scrape_ch_tourismus,
         scrape_agenda_ch,
