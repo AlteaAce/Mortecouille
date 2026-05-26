@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fêtes médiévales en Suisse</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #1a1209;
+      --surface: #221a0e;
+      --surface2: #2e2210;
+      --border: #4a3820;
+      --gold: #c8973a;
+      --gold-light: #e8b85a;
+      --gold-dim: #8a6428;
+      --text: #e8dcc8;
+      --text-dim: #a08870;
+      --red: #8b2020;
+      --red-light: #c44040;
+      --accent: #3d5a2a;
+      --accent-light: #5a8a3a;
+      --radius: 6px;
+    }
+
+    body {
+      font-family: Georgia, 'Times New Roman', serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 0 0 60px;
+    }
+
+    /* ── Header ── */
+    header {
+      background: var(--surface);
+      border-bottom: 2px solid var(--gold-dim);
+      padding: 28px 32px 20px;
+      position: relative;
+      overflow: hidden;
+    }
+    header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        90deg,
+        transparent, transparent 60px,
+        rgba(200,151,58,.03) 60px, rgba(200,151,58,.03) 61px
+      );
+      pointer-events: none;
+    }
+    .header-inner { max-width: 1100px; margin: 0 auto; position: relative; }
+    .crest { font-size: 2.4rem; line-height: 1; margin-bottom: 8px; }
+    h1 {
+      font-size: clamp(1.4rem, 4vw, 2.2rem);
+      color: var(--gold-light);
+      font-weight: normal;
+      letter-spacing: .04em;
+      margin-bottom: 6px;
+    }
+    .subtitle {
+      font-size: .9rem;
+      color: var(--text-dim);
+      font-style: italic;
+      font-family: system-ui, sans-serif;
+    }
+    .meta {
+      font-size: .78rem;
+      color: var(--gold-dim);
+      font-family: system-ui, sans-serif;
+      margin-top: 12px;
+    }
+
+    /* ── Controls ── */
+    .controls {
+      max-width: 1100px;
+      margin: 24px auto 0;
+      padding: 0 24px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      align-items: flex-end;
+    }
+    .control-group { display: flex; flex-direction: column; gap: 5px; }
+    label {
+      font-size: .75rem;
+      font-family: system-ui, sans-serif;
+      color: var(--text-dim);
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+    input[type="date"], select {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      color: var(--text);
+      font-family: system-ui, sans-serif;
+      font-size: .9rem;
+      padding: 7px 12px;
+      outline: none;
+      cursor: pointer;
+      transition: border-color .15s;
+    }
+    input[type="date"]:focus, select:focus { border-color: var(--gold-dim); }
+    select option { background: var(--surface2); }
+
+    .btn {
+      padding: 8px 18px;
+      border-radius: var(--radius);
+      border: 1px solid;
+      font-family: system-ui, sans-serif;
+      font-size: .85rem;
+      cursor: pointer;
+      transition: background .15s, color .15s;
+      white-space: nowrap;
+    }
+    .btn-primary {
+      background: var(--gold-dim);
+      border-color: var(--gold);
+      color: #1a1209;
+    }
+    .btn-primary:hover { background: var(--gold); }
+    .btn-ghost {
+      background: transparent;
+      border-color: var(--border);
+      color: var(--text-dim);
+    }
+    .btn-ghost:hover { border-color: var(--gold-dim); color: var(--text); }
+
+    .count-badge {
+      margin-left: auto;
+      align-self: center;
+      font-family: system-ui, sans-serif;
+      font-size: .85rem;
+      color: var(--text-dim);
+    }
+    .count-badge strong { color: var(--gold-light); }
+
+    /* ── Table ── */
+    .table-wrap {
+      max-width: 1100px;
+      margin: 20px auto 0;
+      padding: 0 24px;
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: .88rem;
+      font-family: system-ui, sans-serif;
+    }
+    thead tr {
+      background: var(--surface2);
+      border-bottom: 2px solid var(--gold-dim);
+    }
+    th {
+      text-align: left;
+      padding: 11px 14px;
+      color: var(--gold);
+      font-weight: 600;
+      font-size: .78rem;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      cursor: pointer;
+      user-select: none;
+    }
+    th:hover { color: var(--gold-light); }
+    th .sort-icon { margin-left: 4px; opacity: .5; font-style: normal; }
+    th.sorted .sort-icon { opacity: 1; color: var(--gold-light); }
+
+    tbody tr {
+      border-bottom: 1px solid rgba(74,56,32,.5);
+      transition: background .1s;
+    }
+    tbody tr:hover { background: var(--surface2); }
+    tbody tr.soon { border-left: 3px solid var(--red-light); }
+    tbody tr.this-month { border-left: 3px solid var(--gold); }
+
+    td {
+      padding: 12px 14px;
+      vertical-align: top;
+      color: var(--text);
+    }
+    td.name { font-weight: 600; color: var(--gold-light); }
+    td.dates { white-space: nowrap; color: var(--text-dim); }
+    td.location { color: var(--text-dim); }
+
+    .link-btn {
+      display: inline-block;
+      padding: 4px 10px;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      color: var(--gold);
+      text-decoration: none;
+      font-size: .8rem;
+      transition: border-color .15s, color .15s;
+    }
+    .link-btn:hover { border-color: var(--gold); color: var(--gold-light); }
+
+    .badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 20px;
+      font-size: .72rem;
+      letter-spacing: .04em;
+      font-weight: 600;
+    }
+    .badge-manual { background: rgba(61,90,42,.4); color: var(--accent-light); border: 1px solid var(--accent); }
+    .badge-scraped { background: rgba(74,56,32,.4); color: var(--gold-dim); border: 1px solid var(--border); }
+    .badge-soon { background: rgba(139,32,32,.3); color: var(--red-light); border: 1px solid var(--red); }
+
+    /* ── Empty state ── */
+    .empty {
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--text-dim);
+      font-style: italic;
+    }
+    .empty .icon { font-size: 2.5rem; display: block; margin-bottom: 12px; }
+
+    /* ── Footer ── */
+    footer {
+      max-width: 1100px;
+      margin: 40px auto 0;
+      padding: 0 24px;
+      font-size: .78rem;
+      color: var(--text-dim);
+      font-family: system-ui, sans-serif;
+      border-top: 1px solid var(--border);
+      padding-top: 16px;
+    }
+    footer a { color: var(--gold-dim); }
+    footer a:hover { color: var(--gold); }
+
+    @media (max-width: 600px) {
+      header { padding: 20px 16px; }
+      .controls { padding: 0 12px; }
+      .table-wrap { padding: 0 12px; }
+      td, th { padding: 9px 8px; }
+      td.location, td.source { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="crest">⚔️</div>
+    <h1>Fêtes médiévales en Suisse</h1>
+    <p class="subtitle">Événements, marchés médiévaux, tournois et joutes — agenda aggregé</p>
+    <p class="meta" id="meta-bar">Chargement…</p>
+  </div>
+</header>
+
+<div class="controls">
+  <div class="control-group">
+    <label for="from-date">À partir du</label>
+    <input type="date" id="from-date">
+  </div>
+  <div class="control-group">
+    <label for="to-date">Jusqu'au</label>
+    <input type="date" id="to-date">
+  </div>
+  <div class="control-group">
+    <label for="search-input">Recherche</label>
+    <input type="date" id="search-input" style="display:none">
+    <!-- reused as text below -->
+  </div>
+  <div class="control-group">
+    <label for="search-kw">Mot-clé / lieu</label>
+    <input type="text" id="search-kw" placeholder="médiéval, Chillon…"
+      style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+             color:var(--text);font-family:system-ui,sans-serif;font-size:.9rem;
+             padding:7px 12px;outline:none;transition:border-color .15s;"
+      onfocus="this.style.borderColor='var(--gold-dim)'" onblur="this.style.borderColor='var(--border)'">
+  </div>
+  <div class="control-group">
+    <label for="sort-by">Trier par</label>
+    <select id="sort-by">
+      <option value="date_asc">Date ↑</option>
+      <option value="date_desc">Date ↓</option>
+      <option value="name_asc">Nom A→Z</option>
+      <option value="location_asc">Lieu A→Z</option>
+    </select>
+  </div>
+  <button class="btn btn-ghost" onclick="resetFilters()">Réinitialiser</button>
+  <div class="count-badge" id="count-badge"></div>
+</div>
+
+<div class="table-wrap">
+  <table id="events-table">
+    <thead>
+      <tr>
+        <th onclick="setSort('name')" id="th-name">Événement <i class="sort-icon">⇅</i></th>
+        <th onclick="setSort('date')" id="th-date" class="sorted">Dates <i class="sort-icon">↑</i></th>
+        <th onclick="setSort('location')" id="th-location">Lieu <i class="sort-icon">⇅</i></th>
+        <th>Lien</th>
+        <th onclick="setSort('source')" id="th-source">Source <i class="sort-icon">⇅</i></th>
+      </tr>
+    </thead>
+    <tbody id="events-body"></tbody>
+  </table>
+  <div class="empty" id="empty-state" style="display:none">
+    <span class="icon">🏰</span>
+    Aucun événement ne correspond aux filtres sélectionnés.
+  </div>
+</div>
+
+<footer>
+  Données agrégées automatiquement depuis les sites officiels des châteaux et plateformes d'événements suisses.
+  Certains événements sont saisis manuellement — vérifiez toujours les dates sur le site de référence.
+  <br>Mise à jour automatique via <code>scraper.py</code> · 
+  <a href="https://github.com/" target="_blank">GitHub</a>
+</footer>
+
+<script>
+const TODAY = new Date();
+TODAY.setHours(0,0,0,0);
+
+let allEvents = [];
+let sortKey = 'date';
+let sortDir = 'asc';
+
+// ── Date helpers ──────────────────────────────────────────────────────────
+function parseDate(str) {
+  if (!str) return null;
+  const [y, m, d] = str.split('-').map(Number);
+  return new Date(y, m - 1, d);
+}
+
+function formatDate(str) {
+  if (!str) return '—';
+  const d = parseDate(str);
+  return d.toLocaleDateString('fr-CH', { day: '2-digit', month: 'short', year: 'numeric' });
+}
+
+function formatDateRange(start, end) {
+  if (!start) return '<span style="color:var(--text-dim)">Date inconnue</span>';
+  if (!end || end === start) return formatDate(start);
+  const s = parseDate(start), e = parseDate(end);
+  if (s.getFullYear() === e.getFullYear() && s.getMonth() === e.getMonth()) {
+    return `${s.getDate()}–${e.getDate()} ${s.toLocaleDateString('fr-CH', {month:'short',year:'numeric'})}`;
+  }
+  return `${formatDate(start)} – ${formatDate(end)}`;
+}
+
+function daysDiff(str) {
+  const d = parseDate(str);
+  if (!d) return Infinity;
+  return Math.ceil((d - TODAY) / 86400000);
+}
+
+// ── Load data ─────────────────────────────────────────────────────────────
+async function loadEvents() {
+  try {
+    const r = await fetch('events.json');
+    const data = await r.json();
+    allEvents = data.events || [];
+    const gen = new Date(data.generated_at);
+    document.getElementById('meta-bar').textContent =
+      `${data.count} événement${data.count > 1 ? 's' : ''} · Mise à jour : ${gen.toLocaleDateString('fr-CH', {day:'2-digit',month:'long',year:'numeric'})}`;
+  } catch (e) {
+    document.getElementById('meta-bar').textContent = 'Impossible de charger events.json';
+    console.error(e);
+  }
+  // Default: from today
+  const fromEl = document.getElementById('from-date');
+  fromEl.value = TODAY.toISOString().slice(0, 10);
+  renderTable();
+}
+
+// ── Filters & sort ────────────────────────────────────────────────────────
+function getFilters() {
+  return {
+    from: document.getElementById('from-date').value,
+    to: document.getElementById('to-date').value,
+    kw: document.getElementById('search-kw').value.trim().toLowerCase(),
+  };
+}
+
+function applyFilters(events) {
+  const { from, to, kw } = getFilters();
+  return events.filter(ev => {
+    const ds = ev.date_start || '9999-99-99';
+    const de = ev.date_end || ds;
+    if (from && de < from) return false;
+    if (to && ds > to) return false;
+    if (kw) {
+      const hay = `${ev.name} ${ev.location} ${ev.source}`.toLowerCase();
+      if (!hay.includes(kw)) return false;
+    }
+    return true;
+  });
+}
+
+function applySort(events) {
+  const sorted = [...events];
+  sorted.sort((a, b) => {
+    let va, vb;
+    if (sortKey === 'date') {
+      va = a.date_start || '9999';
+      vb = b.date_start || '9999';
+    } else if (sortKey === 'name') {
+      va = a.name.toLowerCase(); vb = b.name.toLowerCase();
+    } else if (sortKey === 'location') {
+      va = (a.location || '').toLowerCase(); vb = (b.location || '').toLowerCase();
+    } else if (sortKey === 'source') {
+      va = (a.source || '').toLowerCase(); vb = (b.source || '').toLowerCase();
+    }
+    if (va < vb) return sortDir === 'asc' ? -1 : 1;
+    if (va > vb) return sortDir === 'asc' ? 1 : -1;
+    return 0;
+  });
+  return sorted;
+}
+
+function setSort(key) {
+  if (sortKey === key) {
+    sortDir = sortDir === 'asc' ? 'desc' : 'asc';
+  } else {
+    sortKey = key;
+    sortDir = 'asc';
+  }
+  renderTable();
+}
+
+// ── Render ────────────────────────────────────────────────────────────────
+function renderTable() {
+  const filtered = applyFilters(allEvents);
+  const sorted = applySort(filtered);
+
+  // Update sort icons
+  ['name','date','location','source'].forEach(k => {
+    const th = document.getElementById('th-' + k);
+    if (!th) return;
+    const icon = th.querySelector('.sort-icon');
+    if (sortKey === k) {
+      th.classList.add('sorted');
+      icon.textContent = sortDir === 'asc' ? '↑' : '↓';
+    } else {
+      th.classList.remove('sorted');
+      icon.textContent = '⇅';
+    }
+  });
+
+  const badge = document.getElementById('count-badge');
+  badge.innerHTML = `<strong>${sorted.length}</strong> événement${sorted.length !== 1 ? 's' : ''}`;
+
+  const tbody = document.getElementById('events-body');
+  tbody.innerHTML = '';
+
+  const emptyEl = document.getElementById('empty-state');
+  const tableEl = document.getElementById('events-table');
+
+  if (sorted.length === 0) {
+    emptyEl.style.display = 'block';
+    tableEl.style.display = 'none';
+    return;
+  }
+  emptyEl.style.display = 'none';
+  tableEl.style.display = '';
+
+  sorted.forEach(ev => {
+    const diff = daysDiff(ev.date_start);
+    const tr = document.createElement('tr');
+    if (diff <= 7)  tr.classList.add('soon');
+    else if (diff <= 31) tr.classList.add('this-month');
+
+    const isSoon = diff >= 0 && diff <= 14;
+    const soonBadge = isSoon ? ` <span class="badge badge-soon">Dans ${diff}j</span>` : '';
+    const srcBadge = ev.source === 'Manuel'
+      ? '<span class="badge badge-manual">Manuel</span>'
+      : '<span class="badge badge-scraped">Auto</span>';
+
+    tr.innerHTML = `
+      <td class="name">${escHtml(ev.name)}${soonBadge}</td>
+      <td class="dates">${formatDateRange(ev.date_start, ev.date_end)}</td>
+      <td class="location">${escHtml(ev.location || '—')}</td>
+      <td>${ev.url ? `<a class="link-btn" href="${escHtml(ev.url)}" target="_blank" rel="noopener">🔗 Voir</a>` : '<span style="color:var(--text-dim)">—</span>'}</td>
+      <td class="source">${srcBadge} <span style="color:var(--text-dim);font-size:.8rem">${escHtml(ev.source || '')}</span></td>
+    `;
+    tbody.appendChild(tr);
+  });
+}
+
+function escHtml(str) {
+  return String(str || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function resetFilters() {
+  document.getElementById('from-date').value = TODAY.toISOString().slice(0, 10);
+  document.getElementById('to-date').value = '';
+  document.getElementById('search-kw').value = '';
+  sortKey = 'date'; sortDir = 'asc';
+  renderTable();
+}
+
+// ── Event listeners ───────────────────────────────────────────────────────
+['from-date','to-date'].forEach(id => {
+  document.getElementById(id).addEventListener('change', renderTable);
+});
+document.getElementById('search-kw').addEventListener('input', renderTable);
+document.getElementById('sort-by').addEventListener('change', e => {
+  const [key, dir] = e.target.value.split('_');
+  sortKey = key; sortDir = dir;
+  renderTable();
+});
+
+loadEvents();
+</script>
+</body>
+</html>
