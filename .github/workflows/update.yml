@@ -1,4 +1,4 @@
-name: Mise à jour événements médiévaux
+name: Update medieval events
 
 on:
   schedule:
@@ -29,6 +29,9 @@ jobs:
 
       - name: Lancer le scraper
         run: python scraper.py
+        env:
+          GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
+          GOOGLE_CSE_ID:  ${{ secrets.GOOGLE_CSE_ID }}
 
       - name: Commit et push de events.json
         run: |
@@ -37,4 +40,3 @@ jobs:
           git add events.json
           git diff --cached --quiet || git commit -m "chore: mise à jour événements $(date +%Y-%m-%d)"
           git push
-# workflow
