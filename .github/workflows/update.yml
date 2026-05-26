@@ -32,6 +32,7 @@ jobs:
         env:
           GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
           GOOGLE_CSE_ID:  ${{ secrets.GOOGLE_CSE_ID }}
+          SERPAPI_KEY: ${{ secrets.SERPAPI_KEY }}
 
       - name: Commit et push de events.json
         run: |
