@@ -5,6 +5,9 @@ on:
     - cron: '0 6 * * 1'   # Chaque lundi à 6h UTC
   workflow_dispatch:        # Déclenchement manuel depuis l'interface GitHub
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 permissions:
   contents: write
 
