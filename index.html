@@ -22,6 +22,9 @@
       --accent: #3d5a2a;
       --accent-light: #5a8a3a;
       --radius: 6px;
+      --status-pending-bg: rgba(74,56,32,.2);
+      --status-valid-bg: rgba(61,90,42,.25);
+      --status-invalid-bg: rgba(139,32,32,.15);
     }
 
     body {
@@ -116,17 +119,9 @@
       transition: background .15s, color .15s;
       white-space: nowrap;
     }
-    .btn-primary {
-      background: var(--gold-dim);
-      border-color: var(--gold);
-      color: #1a1209;
-    }
+    .btn-primary { background: var(--gold-dim); border-color: var(--gold); color: #1a1209; }
     .btn-primary:hover { background: var(--gold); }
-    .btn-ghost {
-      background: transparent;
-      border-color: var(--border);
-      color: var(--text-dim);
-    }
+    .btn-ghost { background: transparent; border-color: var(--border); color: var(--text-dim); }
     .btn-ghost:hover { border-color: var(--gold-dim); color: var(--text); }
 
     .count-badge {
@@ -138,10 +133,35 @@
     }
     .count-badge strong { color: var(--gold-light); }
 
+    /* ── Status filter tabs ── */
+    .status-tabs {
+      max-width: 1100px;
+      margin: 16px auto 0;
+      padding: 0 24px;
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .status-tab {
+      padding: 5px 14px;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--text-dim);
+      font-family: system-ui, sans-serif;
+      font-size: .82rem;
+      cursor: pointer;
+      transition: all .15s;
+    }
+    .status-tab:hover { border-color: var(--gold-dim); color: var(--text); }
+    .status-tab.active { border-color: var(--gold); color: var(--gold-light); background: rgba(200,151,58,.1); }
+    .status-tab.tab-valid.active  { border-color: var(--accent-light); color: var(--accent-light); background: rgba(61,90,42,.2); }
+    .status-tab.tab-invalid.active { border-color: var(--red-light); color: var(--red-light); background: rgba(139,32,32,.2); }
+
     /* ── Table ── */
     .table-wrap {
       max-width: 1100px;
-      margin: 20px auto 0;
+      margin: 16px auto 0;
       padding: 0 24px;
       overflow-x: auto;
     }
@@ -171,18 +191,22 @@
     th:hover { color: var(--gold-light); }
     th .sort-icon { margin-left: 4px; opacity: .5; font-style: normal; }
     th.sorted .sort-icon { opacity: 1; color: var(--gold-light); }
+    th.no-sort { cursor: default; }
+    th.no-sort:hover { color: var(--gold); }
 
     tbody tr {
       border-bottom: 1px solid rgba(74,56,32,.5);
       transition: background .1s;
     }
     tbody tr:hover { background: var(--surface2); }
-    tbody tr.soon { border-left: 3px solid var(--red-light); }
+    tbody tr.soon  { border-left: 3px solid var(--red-light); }
     tbody tr.this-month { border-left: 3px solid var(--gold); }
+    tbody tr.status-valid   { background: var(--status-valid-bg); }
+    tbody tr.status-invalid { background: var(--status-invalid-bg); opacity: .6; }
 
     td {
       padding: 12px 14px;
-      vertical-align: top;
+      vertical-align: middle;
       color: var(--text);
     }
     td.name { font-weight: 600; color: var(--gold-light); }
@@ -209,9 +233,42 @@
       letter-spacing: .04em;
       font-weight: 600;
     }
-    .badge-manual { background: rgba(61,90,42,.4); color: var(--accent-light); border: 1px solid var(--accent); }
-    .badge-scraped { background: rgba(74,56,32,.4); color: var(--gold-dim); border: 1px solid var(--border); }
-    .badge-soon { background: rgba(139,32,32,.3); color: var(--red-light); border: 1px solid var(--red); }
+    .badge-manual  { background: rgba(61,90,42,.4);  color: var(--accent-light); border: 1px solid var(--accent); }
+    .badge-scraped { background: rgba(74,56,32,.4);  color: var(--gold-dim);     border: 1px solid var(--border); }
+    .badge-soon    { background: rgba(139,32,32,.3); color: var(--red-light);    border: 1px solid var(--red); }
+
+    /* ── Status buttons ── */
+    .status-cell { white-space: nowrap; }
+    .status-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 10px;
+      border-radius: 4px;
+      border: 1px solid;
+      font-family: system-ui, sans-serif;
+      font-size: .78rem;
+      cursor: pointer;
+      transition: all .15s;
+      background: transparent;
+    }
+    .status-btn-valid {
+      border-color: var(--accent);
+      color: var(--accent-light);
+    }
+    .status-btn-valid:hover, .status-btn-valid.active {
+      background: rgba(61,90,42,.4);
+      border-color: var(--accent-light);
+    }
+    .status-btn-invalid {
+      border-color: var(--red);
+      color: var(--red-light);
+    }
+    .status-btn-invalid:hover, .status-btn-invalid.active {
+      background: rgba(139,32,32,.3);
+      border-color: var(--red-light);
+    }
+    .status-btn.active { font-weight: 600; }
 
     /* ── Empty state ── */
     .empty {
@@ -226,20 +283,18 @@
     footer {
       max-width: 1100px;
       margin: 40px auto 0;
-      padding: 0 24px;
+      padding: 16px 24px 0;
       font-size: .78rem;
       color: var(--text-dim);
       font-family: system-ui, sans-serif;
       border-top: 1px solid var(--border);
-      padding-top: 16px;
     }
     footer a { color: var(--gold-dim); }
     footer a:hover { color: var(--gold); }
 
     @media (max-width: 600px) {
       header { padding: 20px 16px; }
-      .controls { padding: 0 12px; }
-      .table-wrap { padding: 0 12px; }
+      .controls, .status-tabs, .table-wrap { padding: 0 12px; }
       td, th { padding: 9px 8px; }
       td.location, td.source { display: none; }
     }
@@ -251,7 +306,7 @@
   <div class="header-inner">
     <div class="crest">⚔️</div>
     <h1>Fêtes médiévales en Suisse</h1>
-    <p class="subtitle">Événements, marchés médiévaux, tournois et joutes — agenda aggregé</p>
+    <p class="subtitle">Événements, marchés médiévaux, tournois et joutes — agenda agrégé</p>
     <p class="meta" id="meta-bar">Chargement…</p>
   </div>
 </header>
@@ -264,11 +319,6 @@
   <div class="control-group">
     <label for="to-date">Jusqu'au</label>
     <input type="date" id="to-date">
-  </div>
-  <div class="control-group">
-    <label for="search-input">Recherche</label>
-    <input type="date" id="search-input" style="display:none">
-    <!-- reused as text below -->
   </div>
   <div class="control-group">
     <label for="search-kw">Mot-clé / lieu</label>
@@ -291,15 +341,24 @@
   <div class="count-badge" id="count-badge"></div>
 </div>
 
+<!-- Filtres par statut de modération -->
+<div class="status-tabs">
+  <button class="status-tab active" data-status="all"     onclick="setStatusFilter('all')">Tous</button>
+  <button class="status-tab"        data-status="pending" onclick="setStatusFilter('pending')">⬜ Non contrôlés</button>
+  <button class="status-tab tab-valid"   data-status="valid"   onclick="setStatusFilter('valid')">✅ Validés</button>
+  <button class="status-tab tab-invalid" data-status="invalid" onclick="setStatusFilter('invalid')">❌ Invalides</button>
+</div>
+
 <div class="table-wrap">
   <table id="events-table">
     <thead>
       <tr>
-        <th onclick="setSort('name')" id="th-name">Événement <i class="sort-icon">⇅</i></th>
-        <th onclick="setSort('date')" id="th-date" class="sorted">Dates <i class="sort-icon">↑</i></th>
+        <th onclick="setSort('name')"     id="th-name">Événement <i class="sort-icon">⇅</i></th>
+        <th onclick="setSort('date')"     id="th-date" class="sorted">Dates <i class="sort-icon">↑</i></th>
         <th onclick="setSort('location')" id="th-location">Lieu <i class="sort-icon">⇅</i></th>
-        <th>Lien</th>
-        <th onclick="setSort('source')" id="th-source">Source <i class="sort-icon">⇅</i></th>
+        <th class="no-sort">Lien</th>
+        <th onclick="setSort('source')"   id="th-source">Source <i class="sort-icon">⇅</i></th>
+        <th class="no-sort">Statut</th>
       </tr>
     </thead>
     <tbody id="events-body"></tbody>
@@ -311,19 +370,52 @@
 </div>
 
 <footer>
-  Données agrégées automatiquement depuis les sites officiels des châteaux et plateformes d'événements suisses.
-  Certains événements sont saisis manuellement — vérifiez toujours les dates sur le site de référence.
-  <br>Mise à jour automatique via <code>scraper.py</code> · 
-  <a href="https://github.com/" target="_blank">GitHub</a>
+  Données agrégées automatiquement · Les statuts (✅ / ❌) sont sauvegardés dans votre navigateur.
+  <br>Mise à jour automatique via <code>scraper.py</code> ·
+  <a href="https://github.com/AlteaAce/Mortecouille" target="_blank">GitHub</a>
 </footer>
 
 <script>
 const TODAY = new Date();
 TODAY.setHours(0,0,0,0);
 
-let allEvents = [];
-let sortKey = 'date';
-let sortDir = 'asc';
+const STORAGE_KEY = 'medieval-events-status';
+
+let allEvents    = [];
+let sortKey      = 'date';
+let sortDir      = 'asc';
+let statusFilter = 'all';
+let statuses     = {};   // { eventKey: 'valid' | 'invalid' | 'pending' }
+
+// ── Persistence ───────────────────────────────────────────────────────────
+function loadStatuses() {
+  try {
+    statuses = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+  } catch { statuses = {}; }
+}
+
+function saveStatuses() {
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(statuses)); } catch {}
+}
+
+function eventKey(ev) {
+  return (ev.name + '|' + (ev.date_start || '') + '|' + (ev.url || '')).toLowerCase();
+}
+
+function getStatus(ev) {
+  return statuses[eventKey(ev)] || 'pending';
+}
+
+function setStatus(ev, status) {
+  const k = eventKey(ev);
+  if (statuses[k] === status) {
+    delete statuses[k];   // deuxième clic = reset vers "pending"
+  } else {
+    statuses[k] = status;
+  }
+  saveStatuses();
+  renderTable();
+}
 
 // ── Date helpers ──────────────────────────────────────────────────────────
 function parseDate(str) {
@@ -334,8 +426,7 @@ function parseDate(str) {
 
 function formatDate(str) {
   if (!str) return '—';
-  const d = parseDate(str);
-  return d.toLocaleDateString('fr-CH', { day: '2-digit', month: 'short', year: 'numeric' });
+  return parseDate(str).toLocaleDateString('fr-CH', { day: '2-digit', month: 'short', year: 'numeric' });
 }
 
 function formatDateRange(start, end) {
@@ -367,9 +458,7 @@ async function loadEvents() {
     document.getElementById('meta-bar').textContent = 'Impossible de charger events.json';
     console.error(e);
   }
-  // Default: from today
-  const fromEl = document.getElementById('from-date');
-  fromEl.value = TODAY.toISOString().slice(0, 10);
+  document.getElementById('from-date').value = TODAY.toISOString().slice(0, 10);
   renderTable();
 }
 
@@ -377,8 +466,8 @@ async function loadEvents() {
 function getFilters() {
   return {
     from: document.getElementById('from-date').value,
-    to: document.getElementById('to-date').value,
-    kw: document.getElementById('search-kw').value.trim().toLowerCase(),
+    to:   document.getElementById('to-date').value,
+    kw:   document.getElementById('search-kw').value.trim().toLowerCase(),
   };
 }
 
@@ -386,75 +475,73 @@ function applyFilters(events) {
   const { from, to, kw } = getFilters();
   return events.filter(ev => {
     const ds = ev.date_start || '9999-99-99';
-    const de = ev.date_end || ds;
+    const de = ev.date_end   || ds;
     if (from && de < from) return false;
-    if (to && ds > to) return false;
+    if (to   && ds > to)   return false;
     if (kw) {
       const hay = `${ev.name} ${ev.location} ${ev.source}`.toLowerCase();
       if (!hay.includes(kw)) return false;
     }
+    if (statusFilter !== 'all' && getStatus(ev) !== statusFilter) return false;
     return true;
   });
 }
 
 function applySort(events) {
-  const sorted = [...events];
-  sorted.sort((a, b) => {
+  return [...events].sort((a, b) => {
     let va, vb;
-    if (sortKey === 'date') {
-      va = a.date_start || '9999';
-      vb = b.date_start || '9999';
-    } else if (sortKey === 'name') {
-      va = a.name.toLowerCase(); vb = b.name.toLowerCase();
-    } else if (sortKey === 'location') {
-      va = (a.location || '').toLowerCase(); vb = (b.location || '').toLowerCase();
-    } else if (sortKey === 'source') {
-      va = (a.source || '').toLowerCase(); vb = (b.source || '').toLowerCase();
-    }
+    if      (sortKey === 'date')     { va = a.date_start || '9999'; vb = b.date_start || '9999'; }
+    else if (sortKey === 'name')     { va = a.name.toLowerCase();   vb = b.name.toLowerCase(); }
+    else if (sortKey === 'location') { va = (a.location||'').toLowerCase(); vb = (b.location||'').toLowerCase(); }
+    else if (sortKey === 'source')   { va = (a.source||'').toLowerCase();   vb = (b.source||'').toLowerCase(); }
     if (va < vb) return sortDir === 'asc' ? -1 : 1;
-    if (va > vb) return sortDir === 'asc' ? 1 : -1;
+    if (va > vb) return sortDir === 'asc' ?  1 : -1;
     return 0;
   });
-  return sorted;
 }
 
 function setSort(key) {
-  if (sortKey === key) {
-    sortDir = sortDir === 'asc' ? 'desc' : 'asc';
-  } else {
-    sortKey = key;
-    sortDir = 'asc';
-  }
+  if (sortKey === key) sortDir = sortDir === 'asc' ? 'desc' : 'asc';
+  else { sortKey = key; sortDir = 'asc'; }
+  renderTable();
+}
+
+function setStatusFilter(s) {
+  statusFilter = s;
+  document.querySelectorAll('.status-tab').forEach(t => {
+    t.classList.toggle('active', t.dataset.status === s);
+  });
   renderTable();
 }
 
 // ── Render ────────────────────────────────────────────────────────────────
 function renderTable() {
   const filtered = applyFilters(allEvents);
-  const sorted = applySort(filtered);
+  const sorted   = applySort(filtered);
 
-  // Update sort icons
   ['name','date','location','source'].forEach(k => {
     const th = document.getElementById('th-' + k);
     if (!th) return;
     const icon = th.querySelector('.sort-icon');
-    if (sortKey === k) {
-      th.classList.add('sorted');
-      icon.textContent = sortDir === 'asc' ? '↑' : '↓';
-    } else {
-      th.classList.remove('sorted');
-      icon.textContent = '⇅';
-    }
+    if (sortKey === k) { th.classList.add('sorted');    icon.textContent = sortDir === 'asc' ? '↑' : '↓'; }
+    else               { th.classList.remove('sorted'); icon.textContent = '⇅'; }
   });
 
-  const badge = document.getElementById('count-badge');
-  badge.innerHTML = `<strong>${sorted.length}</strong> événement${sorted.length !== 1 ? 's' : ''}`;
+  // Compteurs par statut pour les onglets
+  const counts = { all: allEvents.length, pending: 0, valid: 0, invalid: 0 };
+  allEvents.forEach(ev => { counts[getStatus(ev)] = (counts[getStatus(ev)] || 0) + 1; });
+  document.querySelector('[data-status="all"]').textContent     = `Tous (${counts.all})`;
+  document.querySelector('[data-status="pending"]').textContent = `⬜ Non contrôlés (${counts.pending})`;
+  document.querySelector('[data-status="valid"]').textContent   = `✅ Validés (${counts.valid})`;
+  document.querySelector('[data-status="invalid"]').textContent = `❌ Invalides (${counts.invalid})`;
 
-  const tbody = document.getElementById('events-body');
-  tbody.innerHTML = '';
+  document.getElementById('count-badge').innerHTML =
+    `<strong>${sorted.length}</strong> événement${sorted.length !== 1 ? 's' : ''}`;
 
+  const tbody   = document.getElementById('events-body');
   const emptyEl = document.getElementById('empty-state');
   const tableEl = document.getElementById('events-table');
+  tbody.innerHTML = '';
 
   if (sorted.length === 0) {
     emptyEl.style.display = 'block';
@@ -465,44 +552,69 @@ function renderTable() {
   tableEl.style.display = '';
 
   sorted.forEach(ev => {
-    const diff = daysDiff(ev.date_start);
-    const tr = document.createElement('tr');
-    if (diff <= 7)  tr.classList.add('soon');
-    else if (diff <= 31) tr.classList.add('this-month');
+    const diff   = daysDiff(ev.date_start);
+    const status = getStatus(ev);
+    const tr     = document.createElement('tr');
 
-    const isSoon = diff >= 0 && diff <= 14;
-    const soonBadge = isSoon ? ` <span class="badge badge-soon">Dans ${diff}j</span>` : '';
+    if (diff <= 7)        tr.classList.add('soon');
+    else if (diff <= 31)  tr.classList.add('this-month');
+    if (status === 'valid')   tr.classList.add('status-valid');
+    if (status === 'invalid') tr.classList.add('status-invalid');
+
+    const soonBadge = (diff >= 0 && diff <= 14)
+      ? ` <span class="badge badge-soon">Dans ${diff}j</span>` : '';
     const srcBadge = ev.source === 'Manuel'
       ? '<span class="badge badge-manual">Manuel</span>'
       : '<span class="badge badge-scraped">Auto</span>';
+
+    const validActive   = status === 'valid'   ? 'active' : '';
+    const invalidActive = status === 'invalid' ? 'active' : '';
 
     tr.innerHTML = `
       <td class="name">${escHtml(ev.name)}${soonBadge}</td>
       <td class="dates">${formatDateRange(ev.date_start, ev.date_end)}</td>
       <td class="location">${escHtml(ev.location || '—')}</td>
-      <td>${ev.url ? `<a class="link-btn" href="${escHtml(ev.url)}" target="_blank" rel="noopener">🔗 Voir</a>` : '<span style="color:var(--text-dim)">—</span>'}</td>
+      <td>${ev.url
+        ? `<a class="link-btn" href="${escHtml(ev.url)}" target="_blank" rel="noopener">🔗 Voir</a>`
+        : '<span style="color:var(--text-dim)">—</span>'}</td>
       <td class="source">${srcBadge} <span style="color:var(--text-dim);font-size:.8rem">${escHtml(ev.source || '')}</span></td>
+      <td class="status-cell">
+        <button class="status-btn status-btn-valid ${validActive}"
+          title="Contrôlé et ajouté sur mortecouille.ch"
+          onclick='toggleStatus(${JSON.stringify(ev)}, "valid")'>✅ Validé</button>
+        <button class="status-btn status-btn-invalid ${invalidActive}"
+          title="Contrôlé, non valide"
+          onclick='toggleStatus(${JSON.stringify(ev)}, "invalid")'>❌ Invalide</button>
+      </td>
     `;
     tbody.appendChild(tr);
   });
 }
 
+function toggleStatus(ev, status) {
+  setStatus(ev, status);
+}
+
 function escHtml(str) {
-  return String(str || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  return String(str || '')
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
 
 function resetFilters() {
   document.getElementById('from-date').value = TODAY.toISOString().slice(0, 10);
-  document.getElementById('to-date').value = '';
+  document.getElementById('to-date').value   = '';
   document.getElementById('search-kw').value = '';
   sortKey = 'date'; sortDir = 'asc';
-  renderTable();
+  setStatusFilter('all');
 }
 
-// ── Event listeners ───────────────────────────────────────────────────────
-['from-date','to-date'].forEach(id => {
-  document.getElementById(id).addEventListener('change', renderTable);
-});
+// ── Init ──────────────────────────────────────────────────────────────────
+loadStatuses();
+
+['from-date','to-date'].forEach(id =>
+  document.getElementById(id).addEventListener('change', renderTable)
+);
 document.getElementById('search-kw').addEventListener('input', renderTable);
 document.getElementById('sort-by').addEventListener('change', e => {
   const [key, dir] = e.target.value.split('_');
