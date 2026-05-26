@@ -10,6 +10,9 @@ import json
 import re
 import time
 import logging
+import os
+GOOGLE_API_KEY = os.environ.get("GOOGLE_API_KEY", "")
+GOOGLE_CSE_ID  = os.environ.get("GOOGLE_CSE_ID", "")
 from datetime import datetime, date
 from pathlib import Path
 from urllib.parse import urljoin, quote_plus
@@ -420,6 +423,71 @@ def manual_events() -> list[dict]:
     return [
 
     ]
+
+
+def scrape_google_cse() -> list[dict]:
+    """
+    Google Custom Search — recherche les événements médiévaux en Suisse.
+    100 requêtes gratuites/jour, 10 résultats par requête.
+    """
+    events = []
+    search_queries = [
+        "fête médiévale Suisse 2026",
+        "marché médiéval Suisse 2026",
+        "Mittelalterfest Schweiz 2026",
+        "tournoi chevaliers Suisse 2026",
+        "joutes médiévales Suisse 2026",
+        "Château Chillon événement 2026",
+        "Schloss Kyburg Mittelalterfest 2026",
+        "Schloss Lenzburg fest 2026",
+        "Château Grandson fête 2026",
+        "Château Gruyères événement 2026",
+    ]
+
+    for query in search_queries:
+        url = "https://www.googleapis.com/customsearch/v1"
+        params = {
+            "key": GOOGLE_API_KEY,
+            "cx":  GOOGLE_CSE_ID,
+            "q":   query,
+            "num": 10,
+            "gl":  "ch",   # résultats géolocalisés Suisse
+            "hl":  "fr",
+        }
+        r = get(url + "?" + "&".join(f"{k}={quote_plus(str(v))}" for k, v in params.items()))
+        if not r:
+            continue
+        try:
+            data = r.json()
+            for item in data.get("items", []):
+                title = item.get("title", "")
+                snippet = item.get("snippet", "")
+                link = item.get("link", "")
+
+                if not contains_keyword(title + " " + snippet):
+                    continue
+
+                # Tente d'extraire une date depuis le snippet
+                date_str = normalize_date(
+                    re.search(r"\d{1,2}[./]\d{1,2}[./]\d{4}", snippet or "").group(0)
+                    if re.search(r"\d{1,2}[./]\d{1,2}[./]\d{4}", snippet or "") else ""
+                )
+
+                events.append({
+                    "name":       title,
+                    "date_start": date_str,
+                    "date_end":   None,
+                    "location":   "Suisse",
+                    "url":        link,
+                    "source":     "Google Search",
+                })
+        except Exception as e:
+            log.warning(f"Google CSE parse error pour '{query}': {e}")
+
+        time.sleep(SLEEP_BETWEEN)
+
+    log.info(f"Google CSE → {len(events)} événements")
+    return events
 
 
 # ---------------------------------------------------------------------------
