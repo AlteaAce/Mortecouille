@@ -34,3 +34,4 @@ jobs:
           git add events.json
           git diff --cached --quiet || git commit -m "chore: mise à jour événements $(date +%Y-%m-%d)"
           git push
+# workflow
