@@ -7,13 +7,11 @@ Cron hebdomadaire recommandé: 0 6 * * 1 python3 /chemin/scraper.py
 """
 
 import json
+import os
 import re
 import time
 import logging
-import os
-GOOGLE_API_KEY = os.environ.get("GOOGLE_API_KEY", "")
-GOOGLE_CSE_ID  = os.environ.get("GOOGLE_CSE_ID", "")
-from datetime import datetime, date
+from datetime import datetime, date, timezone
 from pathlib import Path
 from urllib.parse import urljoin, quote_plus
 
@@ -22,6 +20,12 @@ from bs4 import BeautifulSoup
 
 logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
 log = logging.getLogger(__name__)
+
+# ---------------------------------------------------------------------------
+# Clés API (lues depuis les variables d'environnement — voir README)
+# ---------------------------------------------------------------------------
+GOOGLE_API_KEY = os.environ.get("GOOGLE_API_KEY", "")
+GOOGLE_CSE_ID  = os.environ.get("GOOGLE_CSE_ID", "")
 
 # ---------------------------------------------------------------------------
 # Mots-clés de recherche
@@ -56,7 +60,6 @@ KEYWORDS = [
     "Bellinzona", "Castelgrande", "Montebello", "Sasso Corbaro",
 ]
 
-# Déduplique en conservant l'ordre
 KEYWORDS = list(dict.fromkeys(KEYWORDS))
 
 HEADERS = {
@@ -66,14 +69,13 @@ HEADERS = {
     )
 }
 REQUEST_TIMEOUT = 15
-SLEEP_BETWEEN = 1.5  # secondes entre les requêtes
+SLEEP_BETWEEN = 1.5
 
 
 # ---------------------------------------------------------------------------
 # Utilitaires
 # ---------------------------------------------------------------------------
 def normalize_date(raw: str) -> str | None:
-    """Tente de convertir une chaîne de date en ISO 8601 (YYYY-MM-DD)."""
     if not raw:
         return None
     raw = raw.strip()
@@ -88,7 +90,6 @@ def normalize_date(raw: str) -> str | None:
             return datetime.strptime(raw, fmt).strftime("%Y-%m-%d")
         except ValueError:
             pass
-    # Extrait YYYY-MM-DD depuis une chaîne plus longue
     m = re.search(r"(\d{4}-\d{2}-\d{2})", raw)
     if m:
         return m.group(1)
@@ -99,9 +100,8 @@ def normalize_date(raw: str) -> str | None:
 
 
 def is_future(date_str: str | None) -> bool:
-    """Retourne True si la date est dans le futur ou inconnue."""
     if not date_str:
-        return True  # conserve les événements sans date précise
+        return True
     try:
         return datetime.strptime(date_str, "%Y-%m-%d").date() >= date.today()
     except ValueError:
@@ -136,33 +136,113 @@ def get(url: str) -> requests.Response | None:
 
 
 # ---------------------------------------------------------------------------
-# Sources
+# Source : Google Custom Search API
 # ---------------------------------------------------------------------------
+def scrape_google_cse() -> list[dict]:
+    """
+    Google Custom Search — recherche les événements médiévaux en Suisse.
+    100 requêtes gratuites/jour, 10 résultats par requête.
+    Nécessite GOOGLE_API_KEY et GOOGLE_CSE_ID dans les variables d'environnement.
+    """
+    if not GOOGLE_API_KEY or not GOOGLE_CSE_ID:
+        log.warning("Google CSE ignoré : GOOGLE_API_KEY ou GOOGLE_CSE_ID manquant.")
+        return []
 
+    events = []
+    current_year = date.today().year
+    next_year = current_year + 1
+
+    search_queries = [
+        f"fête médiévale Suisse {current_year}",
+        f"fête médiévale Suisse {next_year}",
+        f"marché médiéval Suisse {current_year}",
+        f"Mittelalterfest Schweiz {current_year}",
+        f"tournoi chevaliers Suisse {current_year}",
+        f"joutes médiévales Suisse {current_year}",
+        f"Château Chillon événement {current_year}",
+        f"Schloss Kyburg Mittelalterfest {current_year}",
+        f"Schloss Lenzburg fest {current_year}",
+        f"Château Grandson fête {current_year}",
+        f"Château Gruyères événement {current_year}",
+        f"Schloss Thun Veranstaltung {current_year}",
+    ]
+
+    base_url = "https://www.googleapis.com/customsearch/v1"
+
+    for query in search_queries:
+        params = {
+            "key": GOOGLE_API_KEY,
+            "cx":  GOOGLE_CSE_ID,
+            "q":   query,
+            "num": 10,
+            "gl":  "ch",
+            "hl":  "fr",
+        }
+        url = base_url + "?" + "&".join(
+            f"{k}={quote_plus(str(v))}" for k, v in params.items()
+        )
+        r = get(url)
+        if not r:
+            continue
+
+        try:
+            data = r.json()
+
+            # Quota dépassé
+            if "error" in data:
+                log.warning(f"Google CSE erreur : {data['error'].get('message', '')}")
+                break
+
+            for item in data.get("items", []):
+                title   = item.get("title", "")
+                snippet = item.get("snippet", "") or ""
+                link    = item.get("link", "")
+
+                if not contains_keyword(title + " " + snippet):
+                    continue
+
+                # Tente d'extraire une date depuis le snippet
+                date_match = re.search(
+                    r"(\d{1,2}[./]\d{1,2}[./]\d{4})", snippet
+                )
+                date_str = normalize_date(date_match.group(1)) if date_match else None
+
+                # Essaie aussi le format YYYY-MM-DD dans le snippet
+                if not date_str:
+                    date_str = normalize_date(snippet)
+
+                events.append({
+                    "name":       title,
+                    "date_start": date_str,
+                    "date_end":   None,
+                    "location":   "Suisse",
+                    "url":        link,
+                    "source":     "Google Search",
+                })
+
+        except Exception as e:
+            log.warning(f"Google CSE parse error pour '{query}': {e}")
+
+        time.sleep(SLEEP_BETWEEN)
+
+    log.info(f"Google CSE → {len(events)} événements")
+    return events
+
+
+# ---------------------------------------------------------------------------
+# Sources scraping direct
+# ---------------------------------------------------------------------------
 def scrape_openagenda() -> list[dict]:
-    """
-    OpenAgenda API publique — recherche en Suisse par mots-clés.
-    Doc: https://openagenda.com/agendas/73491888/events.json
-    On interroge l'agenda "Suisse" s'il existe, sinon recherche globale.
-    """
     events = []
     base = "https://api.openagenda.com/v2/events"
-    # Clé publique (pas d'auth nécessaire pour la lecture)
     keywords_query = " OR ".join([
         "médiéval", "medieval", "Mittelalter", "chevalier", "tournoi", "joutes"
     ])
-    params = {
-        "search": keywords_query,
-        "size": 100,
-        "sort": "timings.begin",
-        "monolingual": "fr",
-        "relative": ["current", "upcoming"],
-        "locationRadius": "250km,46.8182,8.2275",  # centre Suisse
-    }
-    url = base + "?" + "&".join(f"{k}={quote_plus(str(v))}" if not isinstance(v, list) else
-                                 "&".join(f"{k}[]={quote_plus(vi)}" for vi in v)
-                                 for k, v in params.items())
-    r = get(f"{base}?search={quote_plus(keywords_query)}&size=100&relative[]=current&relative[]=upcoming&locationRadius=250km,46.8182,8.2275&monolingual=fr")
+    r = get(
+        f"{base}?search={quote_plus(keywords_query)}"
+        f"&size=100&relative[]=current&relative[]=upcoming"
+        f"&locationRadius=250km,46.8182,8.2275&monolingual=fr"
+    )
     if not r:
         return events
     try:
@@ -174,19 +254,17 @@ def scrape_openagenda() -> list[dict]:
                 continue
             timings = ev.get("timings", [{}])
             date_start = normalize_date(timings[0].get("begin", "")) if timings else None
-            date_end = normalize_date(timings[-1].get("end", "")) if timings else None
+            date_end   = normalize_date(timings[-1].get("end", "")) if timings else None
             slug = ev.get("slug", "")
             agenda_slug = ev.get("agenda", {}).get("slug", "")
-            link = f"https://openagenda.com/agendas/{agenda_slug}/events/{slug}" if agenda_slug and slug else ""
-            location = ev.get("location", {})
-            city = location.get("city", "")
+            link = (
+                f"https://openagenda.com/agendas/{agenda_slug}/events/{slug}"
+                if agenda_slug and slug else ""
+            )
+            city = ev.get("location", {}).get("city", "")
             events.append({
-                "name": title,
-                "date_start": date_start,
-                "date_end": date_end,
-                "location": city,
-                "url": link,
-                "source": "OpenAgenda",
+                "name": title, "date_start": date_start, "date_end": date_end,
+                "location": city, "url": link, "source": "OpenAgenda",
             })
     except Exception as e:
         log.warning(f"OpenAgenda parse error: {e}")
@@ -195,10 +273,6 @@ def scrape_openagenda() -> list[dict]:
 
 
 def scrape_ch_tourismus() -> list[dict]:
-    """
-    MySwitzerland.com (Suisse Tourisme) — page événements.
-    On scrape la liste d'événements filtrés par catégorie culture/traditions.
-    """
     events = []
     url = "https://www.myswitzerland.com/fr-ch/experiences/evenements/"
     r = get(url)
@@ -216,31 +290,22 @@ def scrape_ch_tourismus() -> list[dict]:
         link_el = card.select_one("a[href]")
         link = urljoin(url, link_el["href"]) if link_el else url
         events.append({
-            "name": title,
-            "date_start": normalize_date(raw_date),
-            "date_end": None,
-            "location": "Suisse",
-            "url": link,
-            "source": "MySwitzerland",
+            "name": title, "date_start": normalize_date(raw_date), "date_end": None,
+            "location": "Suisse", "url": link, "source": "MySwitzerland",
         })
     log.info(f"MySwitzerland → {len(events)} événements")
     return events
 
 
 def scrape_agenda_ch() -> list[dict]:
-    """
-    Agenda.ch — moteur de recherche d'événements suisses.
-    """
     events = []
-    search_terms = ["médiéval", "Mittelalterfest", "chevalier", "tournoi joutes"]
-    for term in search_terms:
+    for term in ["médiéval", "Mittelalterfest", "chevalier", "tournoi joutes"]:
         url = f"https://www.agenda.ch/de/suche/?q={quote_plus(term)}&country=CH"
         r = get(url)
         if not r:
             continue
         soup = BeautifulSoup(r.text, "lxml")
-        items = soup.select("div.event, article.event, li.event, div[class*='event-item']")
-        for item in items:
+        for item in soup.select("div.event, article.event, li.event, div[class*='event-item']"):
             title_el = item.select_one("h2, h3, .title, [class*='title']")
             title = title_el.get_text(strip=True) if title_el else ""
             if not title or not contains_keyword(title):
@@ -252,242 +317,99 @@ def scrape_agenda_ch() -> list[dict]:
             location_el = item.select_one("[class*='location'], [class*='city'], [class*='place']")
             location = location_el.get_text(strip=True) if location_el else ""
             events.append({
-                "name": title,
-                "date_start": normalize_date(raw_date),
-                "date_end": None,
-                "location": location,
-                "url": link,
-                "source": "Agenda.ch",
+                "name": title, "date_start": normalize_date(raw_date), "date_end": None,
+                "location": location, "url": link, "source": "Agenda.ch",
             })
         time.sleep(SLEEP_BETWEEN)
     log.info(f"Agenda.ch → {len(events)} événements")
     return events
 
 
-def scrape_chateau_chillon() -> list[dict]:
-    """Château de Chillon — page agenda officielle."""
+def _scrape_generic(url: str, location: str, source: str) -> list[dict]:
+    """Scraper générique pour les agendas de châteaux."""
     events = []
-    url = "https://www.chillon.ch/fr/agenda"
     r = get(url)
     if not r:
         return events
     soup = BeautifulSoup(r.text, "lxml")
-    items = soup.select("article, div.event, li.event, div[class*='agenda-item'], div[class*='event']")
-    for item in items:
-        title_el = item.select_one("h2, h3, h4, [class*='title']")
-        title = title_el.get_text(strip=True) if title_el else ""
-        if not title:
-            continue
-        date_el = item.select_one("time, [class*='date']")
-        raw_date = date_el.get("datetime", "") or (date_el.get_text(strip=True) if date_el else "")
-        link_el = item.select_one("a[href]")
-        link = urljoin(url, link_el["href"]) if link_el else url
-        events.append({
-            "name": title,
-            "date_start": normalize_date(raw_date),
-            "date_end": None,
-            "location": "Château de Chillon, Veytaux",
-            "url": link,
-            "source": "Château de Chillon",
-        })
-    log.info(f"Château de Chillon → {len(events)} événements")
-    return events
-
-
-def scrape_chateau_gruyeres() -> list[dict]:
-    """Château de Gruyères — agenda."""
-    events = []
-    url = "https://www.chateau-gruyeres.ch/fr/agenda"
-    r = get(url)
-    if not r:
-        return events
-    soup = BeautifulSoup(r.text, "lxml")
-    items = soup.select("article, div[class*='event'], li[class*='event'], div[class*='agenda']")
+    selectors = [
+        "article", "div[class*='event']", "li[class*='event']",
+        "div[class*='agenda']", "div[class*='veranstaltung']", "div[class*='program']",
+    ]
+    items = soup.select(", ".join(selectors))
     for item in items:
         title_el = item.select_one("h2, h3, h4, [class*='title'], [class*='name']")
         title = title_el.get_text(strip=True) if title_el else ""
         if not title:
             continue
-        date_el = item.select_one("time, [class*='date']")
+        date_el = item.select_one("time, [class*='date'], [class*='datum']")
         raw_date = date_el.get("datetime", "") or (date_el.get_text(strip=True) if date_el else "")
         link_el = item.select_one("a[href]")
         link = urljoin(url, link_el["href"]) if link_el else url
         events.append({
-            "name": title,
-            "date_start": normalize_date(raw_date),
-            "date_end": None,
-            "location": "Château de Gruyères",
-            "url": link,
-            "source": "Château de Gruyères",
+            "name": title, "date_start": normalize_date(raw_date), "date_end": None,
+            "location": location, "url": link, "source": source,
         })
-    log.info(f"Château de Gruyères → {len(events)} événements")
+    log.info(f"{source} → {len(events)} événements")
     return events
 
+
+def scrape_chateau_chillon() -> list[dict]:
+    return _scrape_generic(
+        "https://www.chillon.ch/fr/agenda",
+        "Château de Chillon, Veytaux",
+        "Château de Chillon",
+    )
+
+def scrape_chateau_gruyeres() -> list[dict]:
+    return _scrape_generic(
+        "https://www.chateau-gruyeres.ch/fr/agenda",
+        "Château de Gruyères",
+        "Château de Gruyères",
+    )
 
 def scrape_schloss_thun() -> list[dict]:
-    """Schloss Thun — agenda."""
-    events = []
-    url = "https://www.schlossthun.ch/de/veranstaltungen"
-    r = get(url)
-    if not r:
-        return events
-    soup = BeautifulSoup(r.text, "lxml")
-    items = soup.select("article, div[class*='event'], div[class*='veranstaltung'], li[class*='event']")
-    for item in items:
-        title_el = item.select_one("h2, h3, h4, [class*='title']")
-        title = title_el.get_text(strip=True) if title_el else ""
-        if not title:
-            continue
-        date_el = item.select_one("time, [class*='date'], [class*='datum']")
-        raw_date = date_el.get("datetime", "") or (date_el.get_text(strip=True) if date_el else "")
-        link_el = item.select_one("a[href]")
-        link = urljoin(url, link_el["href"]) if link_el else url
-        events.append({
-            "name": title,
-            "date_start": normalize_date(raw_date),
-            "date_end": None,
-            "location": "Schloss Thun",
-            "url": link,
-            "source": "Schloss Thun",
-        })
-    log.info(f"Schloss Thun → {len(events)} événements")
-    return events
-
+    return _scrape_generic(
+        "https://www.schlossthun.ch/de/veranstaltungen",
+        "Schloss Thun",
+        "Schloss Thun",
+    )
 
 def scrape_schloss_lenzburg() -> list[dict]:
-    """Schloss Lenzburg — agenda."""
-    events = []
-    url = "https://www.schlosslenzburg.ch/de/programm"
-    r = get(url)
-    if not r:
-        return events
-    soup = BeautifulSoup(r.text, "lxml")
-    items = soup.select("article, div[class*='event'], div[class*='program'], li[class*='event']")
-    for item in items:
-        title_el = item.select_one("h2, h3, h4, [class*='title']")
-        title = title_el.get_text(strip=True) if title_el else ""
-        if not title:
-            continue
-        date_el = item.select_one("time, [class*='date'], [class*='datum']")
-        raw_date = date_el.get("datetime", "") or (date_el.get_text(strip=True) if date_el else "")
-        link_el = item.select_one("a[href]")
-        link = urljoin(url, link_el["href"]) if link_el else url
-        events.append({
-            "name": title,
-            "date_start": normalize_date(raw_date),
-            "date_end": None,
-            "location": "Schloss Lenzburg",
-            "url": link,
-            "source": "Schloss Lenzburg",
-        })
-    log.info(f"Schloss Lenzburg → {len(events)} événements")
-    return events
-
+    return _scrape_generic(
+        "https://www.schlosslenzburg.ch/de/programm",
+        "Schloss Lenzburg",
+        "Schloss Lenzburg",
+    )
 
 def scrape_castelgrande_bellinzona() -> list[dict]:
-    """Castelgrande Bellinzona — agenda."""
-    events = []
-    url = "https://www.bellinzonese-altoticino.ch/it/eventi"
-    r = get(url)
-    if not r:
-        return events
-    soup = BeautifulSoup(r.text, "lxml")
-    items = soup.select("article, div[class*='event'], li[class*='event']")
-    for item in items:
-        title_el = item.select_one("h2, h3, h4, [class*='title']")
-        title = title_el.get_text(strip=True) if title_el else ""
-        if not title:
-            continue
-        date_el = item.select_one("time, [class*='date']")
-        raw_date = date_el.get("datetime", "") or (date_el.get_text(strip=True) if date_el else "")
-        link_el = item.select_one("a[href]")
-        link = urljoin(url, link_el["href"]) if link_el else url
-        events.append({
-            "name": title,
-            "date_start": normalize_date(raw_date),
-            "date_end": None,
-            "location": "Bellinzona (Castelgrande / Montebello / Sasso Corbaro)",
-            "url": link,
-            "source": "Bellinzona Châteaux",
-        })
-    log.info(f"Bellinzona → {len(events)} événements")
-    return events
+    return _scrape_generic(
+        "https://www.bellinzonese-altoticino.ch/it/eventi",
+        "Bellinzona (Castelgrande / Montebello / Sasso Corbaro)",
+        "Bellinzona Châteaux",
+    )
 
 
+# ---------------------------------------------------------------------------
+# Événements saisis manuellement
+# ---------------------------------------------------------------------------
 def manual_events() -> list[dict]:
     """
-    Événements récurrents connus — à compléter manuellement.
-    Ces événements ont lieu chaque année à des dates similaires.
-    Mets à jour les dates en début de chaque saison.
+    Événements vérifiés manuellement.
+    Ajoute ici les événements que tu as confirmés sur les sites officiels.
+    Format des dates : YYYY-MM-DD
     """
     return [
-
+        # Exemple (décommente et remplis avec de vraies dates vérifiées) :
+        # {
+        #     "name":       "Fête médiévale de Grandson",
+        #     "date_start": "2026-XX-XX",
+        #     "date_end":   "2026-XX-XX",
+        #     "location":   "Château de Grandson, Grandson",
+        #     "url":        "https://www.chateau-grandson.ch",
+        #     "source":     "Manuel",
+        # },
     ]
-
-
-def scrape_google_cse() -> list[dict]:
-    """
-    Google Custom Search — recherche les événements médiévaux en Suisse.
-    100 requêtes gratuites/jour, 10 résultats par requête.
-    """
-    events = []
-    search_queries = [
-        "fête médiévale Suisse 2026",
-        "marché médiéval Suisse 2026",
-        "Mittelalterfest Schweiz 2026",
-        "tournoi chevaliers Suisse 2026",
-        "joutes médiévales Suisse 2026",
-        "Château Chillon événement 2026",
-        "Schloss Kyburg Mittelalterfest 2026",
-        "Schloss Lenzburg fest 2026",
-        "Château Grandson fête 2026",
-        "Château Gruyères événement 2026",
-    ]
-
-    for query in search_queries:
-        url = "https://www.googleapis.com/customsearch/v1"
-        params = {
-            "key": GOOGLE_API_KEY,
-            "cx":  GOOGLE_CSE_ID,
-            "q":   query,
-            "num": 10,
-            "gl":  "ch",   # résultats géolocalisés Suisse
-            "hl":  "fr",
-        }
-        r = get(url + "?" + "&".join(f"{k}={quote_plus(str(v))}" for k, v in params.items()))
-        if not r:
-            continue
-        try:
-            data = r.json()
-            for item in data.get("items", []):
-                title = item.get("title", "")
-                snippet = item.get("snippet", "")
-                link = item.get("link", "")
-
-                if not contains_keyword(title + " " + snippet):
-                    continue
-
-                # Tente d'extraire une date depuis le snippet
-                date_str = normalize_date(
-                    re.search(r"\d{1,2}[./]\d{1,2}[./]\d{4}", snippet or "").group(0)
-                    if re.search(r"\d{1,2}[./]\d{1,2}[./]\d{4}", snippet or "") else ""
-                )
-
-                events.append({
-                    "name":       title,
-                    "date_start": date_str,
-                    "date_end":   None,
-                    "location":   "Suisse",
-                    "url":        link,
-                    "source":     "Google Search",
-                })
-        except Exception as e:
-            log.warning(f"Google CSE parse error pour '{query}': {e}")
-
-        time.sleep(SLEEP_BETWEEN)
-
-    log.info(f"Google CSE → {len(events)} événements")
-    return events
 
 
 # ---------------------------------------------------------------------------
@@ -498,6 +420,7 @@ def run() -> None:
     all_events: list[dict] = []
 
     scrapers = [
+        scrape_google_cse,          # Google Custom Search (si clés disponibles)
         scrape_openagenda,
         scrape_ch_tourismus,
         scrape_agenda_ch,
@@ -516,13 +439,12 @@ def run() -> None:
         except Exception as e:
             log.error(f"{scraper.__name__} a planté : {e}")
 
-    # Filtre événements futurs + déduplique + trie par date
     future = [ev for ev in all_events if is_future(ev.get("date_start"))]
     unique = deduplicate(future)
     unique.sort(key=lambda e: e.get("date_start") or "9999-99-99")
 
     output = {
-        "generated_at": datetime.utcnow().isoformat() + "Z",
+        "generated_at": datetime.now(timezone.utc).isoformat(),
         "count": len(unique),
         "events": unique,
     }
