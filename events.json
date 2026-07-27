@@ -1,7 +1,15 @@
 {
-  "generated_at": "2026-07-20T09:23:31.359126+00:00",
-  "count": 66,
+  "generated_at": "2026-07-27T09:59:57.378402+00:00",
+  "count": 84,
   "events": [
+    {
+      "name": "Events in Thun",
+      "date_start": "2026-07-28",
+      "date_end": null,
+      "location": "Suisse",
+      "url": "https://www.thunersee.ch/reiseziele/thunersee/stadt-thun/events-in-thun",
+      "source": "SerpApi"
+    },
     {
       "name": "Manifestations - Médiéval | Suisse Tourisme",
       "date_start": "2026-07-31",
@@ -19,11 +27,19 @@
       "source": "SerpApi"
     },
     {
-      "name": "Evénements",
-      "date_start": "2026-08-02",
+      "name": "Fêtes médiévales à Suisse",
+      "date_start": "2026-08-01",
       "date_end": null,
       "location": "Suisse",
-      "url": "https://www.gruyeres.ch/anlaesseaktuelles",
+      "url": "https://www.fetes-medievales.com/ville/suisse-57340",
+      "source": "SerpApi"
+    },
+    {
+      "name": "Stadt Lenzburg - Veranstaltungen",
+      "date_start": "2026-08-08",
+      "date_end": null,
+      "location": "Suisse",
+      "url": "https://www.lenzburg.ch/veranstaltungen",
       "source": "SerpApi"
     },
     {
@@ -43,14 +59,6 @@
       "source": "SerpApi"
     },
     {
-      "name": "Fêtes médiévales à Suisse",
-      "date_start": "2026-09-13",
-      "date_end": null,
-      "location": "Suisse",
-      "url": "https://www.fetes-medievales.com/ville/suisse-57340",
-      "source": "SerpApi"
-    },
-    {
       "name": "Manifestations - Médiéval | Suisse Tourisme",
       "date_start": "2026-09-19",
       "date_end": null,
@@ -67,11 +75,27 @@
       "source": "SerpApi"
     },
     {
-      "name": "Évenements proposant l'animation Tournoi de chevalerie",
-      "date_start": "2026-10-03",
+      "name": "Expositions et événements",
+      "date_start": "2026-10-04",
       "date_end": null,
       "location": "Suisse",
-      "url": "https://www.fetes-medievales.com/option/tournoi-de-chevalerie",
+      "url": "https://www.chateau-gruyeres.ch/expositions-et-evenements/",
+      "source": "SerpApi"
+    },
+    {
+      "name": "Château de Gruyères - Entrez dans la légende",
+      "date_start": "2026-10-04",
+      "date_end": null,
+      "location": "Suisse",
+      "url": "https://www.chateau-gruyeres.ch/",
+      "source": "SerpApi"
+    },
+    {
+      "name": "Anmeldung Mittelaltermarkt",
+      "date_start": "2026-11-20",
+      "date_end": null,
+      "location": "Suisse",
+      "url": "https://www.turnei.ch/anmeldung-mittelaltermarkt",
       "source": "SerpApi"
     },
     {
@@ -131,11 +155,11 @@
       "source": "SerpApi"
     },
     {
-      "name": "Marché médiéval, viking et fantastique - Fribourg",
+      "name": "Estavayer1470 – Fête médiévale à Estavayer-le-Lac",
       "date_start": null,
       "date_end": null,
       "location": "Suisse",
-      "url": "https://www.tempslibre.ch/fribourg/manifestations/448129-march-m-di-val-viking-et-fantastique",
+      "url": "https://www.estavayer1470.ch/",
       "source": "SerpApi"
     },
     {
@@ -147,19 +171,19 @@
       "source": "SerpApi"
     },
     {
-      "name": "Les Médiévales de Saint-Ursanne 2027 - fête traditionnelle",
+      "name": "Fête médiévale au Château de Grandson",
       "date_start": null,
       "date_end": null,
       "location": "Suisse",
-      "url": "https://www.jds.fr/manifestations/fetes/les-medievales-de-saint-ursanne-107589_A",
+      "url": "https://www.tempslibre.ch/vaud/manifestations/450917-f-te-m-di-vale-au-ch-teau-de-grandson",
       "source": "SerpApi"
     },
     {
-      "name": "Manifestations - Médiéval | Suisse Tourisme",
+      "name": "Fête médiévale de la Saint-Jean - Loisirs.ch",
       "date_start": null,
       "date_end": null,
       "location": "Suisse",
-      "url": "https://www.myswitzerland.com/fr-ch/decouvrir/manifestations/manifestations-rechercher/?rubrik=mittelalter",
+      "url": "https://www.loisirs.ch/agenda/fete-medievale-de-la-saint-jean/",
       "source": "SerpApi"
     },
     {
@@ -179,15 +203,39 @@
       "source": "SerpApi"
     },
     {
-      "name": "Fête médiévale de la Saint-Jean - Loisirs.ch",
+      "name": "Fête Médiévale",
       "date_start": null,
       "date_end": null,
       "location": "Suisse",
-      "url": "https://www.loisirs.ch/agenda/fete-medievale-de-la-saint-jean/",
+      "url": "https://chateau-grandson.ch/agenda/fete-medievale/",
       "source": "SerpApi"
     },
     {
-      "name": "Marché médiéval – Fantasy Basel",
+      "name": "Fête médiévale au Château de Grandson | Suisse Tourisme",
+      "date_start": null,
+      "date_end": null,
+      "location": "Suisse",
+      "url": "https://www.myswitzerland.com/fr-ch/decouvrir/manifestations/fete-medievale-au-chateau-de-grandson/",
+      "source": "SerpApi"
+    },
+    {
+      "name": "Les Médiévales de Saint-Ursanne 2027 - fête traditionnelle",
+      "date_start": null,
+      "date_end": null,
+      "location": "Suisse",
+      "url": "https://www.jds.fr/manifestations/fetes/les-medievales-de-saint-ursanne-107589_A",
+      "source": "SerpApi"
+    },
+    {
+      "name": "Marché médiéval, viking et fantastique - Fribourg",
+      "date_start": null,
+      "date_end": null,
+      "location": "Suisse",
+      "url": "https://www.tempslibre.ch/fribourg/manifestations/448129-march-m-di-val-viking-et-fantastique",
+      "source": "SerpApi"
+    },
+    {
+      "name": "Marché médiéval",
       "date_start": null,
       "date_end": null,
       "location": "Suisse",
@@ -203,19 +251,19 @@
       "source": "SerpApi"
     },
     {
-      "name": "Schweizer Mittelalterkalender - Was läuft wo?",
-      "date_start": null,
-      "date_end": null,
-      "location": "Suisse",
-      "url": "https://www.drachenhort.ch/mittelalterkalender",
-      "source": "SerpApi"
-    },
-    {
       "name": "Mittelaltermarkt Schweiz 2026 | Mittelalterfest Spektakel",
       "date_start": null,
       "date_end": null,
       "location": "Suisse",
       "url": "https://www.freizeit.ch/dossier/24771/mittelaltermarkt-und-mehr-veranstaltungen-um-in-vergangene-zeiten-einzutauchen",
+      "source": "SerpApi"
+    },
+    {
+      "name": "Schweizer Mittelalterkalender - Was läuft wo?",
+      "date_start": null,
+      "date_end": null,
+      "location": "Suisse",
+      "url": "https://www.drachenhort.ch/mittelalterkalender",
       "source": "SerpApi"
     },
     {
@@ -227,6 +275,14 @@
       "source": "SerpApi"
     },
     {
+      "name": "Mittelaltermarkt Burgdorf | CaligatusFeleus",
+      "date_start": null,
+      "date_end": null,
+      "location": "Suisse",
+      "url": "https://www.caligatus-feleus.ch/burgdorf",
+      "source": "SerpApi"
+    },
+    {
       "name": "Mittelalter- und Fantasy-Fest Rheinfelden",
       "date_start": null,
       "date_end": null,
@@ -235,19 +291,11 @@
       "source": "SerpApi"
     },
     {
-      "name": "Mittelaltermärkte in St. Gallen 2026",
+      "name": "Mittelalterfest Zug 2026",
       "date_start": null,
       "date_end": null,
       "location": "Suisse",
-      "url": "https://vehi-mercatus.de/marktkalender/mittelaltermaerkte/st-gallen/2026/",
-      "source": "SerpApi"
-    },
-    {
-      "name": "Mittelalterfest | Schweiz Tourismus",
-      "date_start": null,
-      "date_end": null,
-      "location": "Suisse",
-      "url": "https://www.myswitzerland.com/de/erlebnisse/veranstaltungen/mittelalterfest/",
+      "url": "https://www.zug-tourismus.ch/de/mittelalterfest-zug-2026/",
       "source": "SerpApi"
     },
     {
@@ -259,19 +307,83 @@
       "source": "SerpApi"
     },
     {
-      "name": "Dimanches - Tournoi des chevaliers de Kaltenberg 2026",
+      "name": "« Magna Carta - Monaco Malizia » ⚔️ 🗓️ Samedi 7 février ...",
       "date_start": null,
       "date_end": null,
       "location": "Suisse",
-      "url": "https://www.ritterturnier.de/fr/turniertage/sonntage/",
+      "url": "https://www.instagram.com/p/DTF9ilCjE1Q/",
       "source": "SerpApi"
     },
     {
-      "name": "En route pour la saison 2026 ! Prochaine annonce de date la ...",
+      "name": "Le Sinjska Alka, un tournoi de chevalerie à Sinj",
       "date_start": null,
       "date_end": null,
       "location": "Suisse",
-      "url": "https://www.facebook.com/Chevalerieinitiatique/videos/en-route-pour-la-saison-2026-prochaine-annonce-de-date-la-semaine-prochaine-un-i/1941100866440004/",
+      "url": "https://ich.unesco.org/fr/RL/le-sinjska-alka-un-tournoi-de-chevalerie-a-sinj-00357",
+      "source": "SerpApi"
+    },
+    {
+      "name": "Notre equipe HDC participera au tournoi Chevalier Cup ...",
+      "date_start": null,
+      "date_end": null,
+      "location": "Suisse",
+      "url": "https://www.facebook.com/HDCSwitzerland/posts/notre-equipe-hdc-participera-au-tournoi-chevalier-cup-annecy-u11-joueurs-n%C3%A9s-en-/1416230663847976/",
+      "source": "SerpApi"
+    },
+    {
+      "name": "Les tournois de chevalerie",
+      "date_start": null,
+      "date_end": null,
+      "location": "Suisse",
+      "url": "https://www.normandie-tourisme.fr/agenda/les-tournois-de-chevalerie/",
+      "source": "SerpApi"
+    },
+    {
+      "name": "Tournois",
+      "date_start": null,
+      "date_end": null,
+      "location": "Suisse",
+      "url": "https://hls-dhs-dss.ch/fr/articles/016329/",
+      "source": "SerpApi"
+    },
+    {
+      "name": "Les chevaliers étaient en piste pour vous en mettre plein les ...",
+      "date_start": null,
+      "date_end": null,
+      "location": "Suisse",
+      "url": "https://www.facebook.com/100057266236595/videos/la-derni%C3%A8re-joute/511787432904898/",
+      "source": "SerpApi"
+    },
+    {
+      "name": "Les tournois de chevalerie (Mézidon Vallée d'Auge)",
+      "date_start": null,
+      "date_end": null,
+      "location": "Suisse",
+      "url": "https://tourisme.lisieux-normandie.fr/offres/les-tournois-de-chevalerie-mezidon-vallee-dauge-fr-5560281/",
+      "source": "SerpApi"
+    },
+    {
+      "name": "Coûte que joute (Episode 207 - Saison 2) - Max et les mi ...",
+      "date_start": null,
+      "date_end": null,
+      "location": "Suisse",
+      "url": "https://www.rts.ch/play/tv/max-et-les-mi-chevaliers/video/coute-que-joute?urn=urn:rts:video:e397ac2c-0172-398b-9f6a-900da8930741",
+      "source": "SerpApi"
+    },
+    {
+      "name": "Invitation 27ième Tournoi de la Jeunesse 2026",
+      "date_start": null,
+      "date_end": null,
+      "location": "Suisse",
+      "url": "https://escrimesion.ch/invitation-27ieme-tournoi-de-la-jeunesse-2026/page/15/?et_blog",
+      "source": "SerpApi"
+    },
+    {
+      "name": "Manifestations - Médiéval | Suisse Tourisme",
+      "date_start": null,
+      "date_end": null,
+      "location": "Suisse",
+      "url": "https://www.myswitzerland.com/fr-ch/decouvrir/manifestations/manifestations-rechercher/?rubrik=mittelalter",
       "source": "SerpApi"
     },
     {
@@ -283,19 +395,19 @@
       "source": "SerpApi"
     },
     {
-      "name": "Médiéval fantastique à Chillon",
-      "date_start": null,
-      "date_end": null,
-      "location": "Suisse",
-      "url": "https://www.tempslibre.ch/vaud/manifestations/448746-m-di-val-fantastique-chillon",
-      "source": "SerpApi"
-    },
-    {
       "name": "Programme Général – La Bayardine – Fêtes médiévales ...",
       "date_start": null,
       "date_end": null,
       "location": "Suisse",
       "url": "https://bayardine.ch/programme-des-fetes-medievales-2025/",
+      "source": "SerpApi"
+    },
+    {
+      "name": "Médiéval fantastique à Chillon",
+      "date_start": null,
+      "date_end": null,
+      "location": "Suisse",
+      "url": "https://www.tempslibre.ch/vaud/manifestations/448746-m-di-val-fantastique-chillon",
       "source": "SerpApi"
     },
     {
@@ -331,6 +443,14 @@
       "source": "SerpApi"
     },
     {
+      "name": "Noël médiéval au château",
+      "date_start": null,
+      "date_end": null,
+      "location": "Suisse",
+      "url": "https://www.chillon.ch/monagenda/noel-medieval-au-chateau/",
+      "source": "SerpApi"
+    },
+    {
       "name": "Vacances de Pâques au Musée Fort de Chillon",
       "date_start": null,
       "date_end": null,
@@ -347,19 +467,27 @@
       "source": "SerpApi"
     },
     {
-      "name": "Erleben Sie das Mittelalter auf Schloss Kyburg",
+      "name": "Rittertag – ein Sommerfest für Familien in Kyburg | Messen",
       "date_start": null,
       "date_end": null,
       "location": "Suisse",
-      "url": "https://www.marktindex.ch/freizeit/ausflugsziele/erleben-sie-das-mittelalter-auf-schloss-kyburg/",
+      "url": "https://eventfrog.ch/de/p/messen/rittertag-ein-sommerfest-fuer-familien-7449940623149295949.html",
       "source": "SerpApi"
     },
     {
-      "name": "Jahresprogramm 2026",
+      "name": "Das war das Mittelalter-Burg-Fest 2026... Drei Tage lang ...",
       "date_start": null,
       "date_end": null,
       "location": "Suisse",
-      "url": "https://schlosskyburg.ch/wp-content/uploads/2026/03/JaPro_2026_web.pdf",
+      "url": "https://www.facebook.com/SchlossNeuenburg/videos/das-war-das-mittelalter-burg-fest-2026drei-tage-lang-herrschte-auf-schloss-neuen/962764293184804/",
+      "source": "SerpApi"
+    },
+    {
+      "name": "Mittelalterfest Schloss Laupen am 11.04.2026 in Laupen Schweiz",
+      "date_start": null,
+      "date_end": null,
+      "location": "Suisse",
+      "url": "https://www.showticket.ch/7453930",
       "source": "SerpApi"
     },
     {
@@ -371,19 +499,27 @@
       "source": "SerpApi"
     },
     {
-      "name": "Rittertag – ein Sommerfest für Familien à Kyburg",
+      "name": "Mittelaltermarkt Schloss Lenzburg 2026 - Vehi Mercatus",
       "date_start": null,
       "date_end": null,
       "location": "Suisse",
-      "url": "https://eventfrog.ch/fr/p/evenements-pour-les-enfants/fete-pour-les-enfants/rittertag-ein-sommerfest-fuer-familien-7464953162799044618.html",
+      "url": "https://vehi-mercatus.ch/marktkalender/mittelaltermarkt-schloss-lenzburg-2026/",
       "source": "SerpApi"
     },
     {
-      "name": "Rittertag – ein Sommerfest für Familien | Schweiz Tourismus",
+      "name": "Düstere Erfindung: Die Eiserne Jungfrau auf der Kyburg",
       "date_start": null,
       "date_end": null,
       "location": "Suisse",
-      "url": "https://www.myswitzerland.com/de/erlebnisse/veranstaltungen/rittertag-ein-sommerfest-fuer-familien/",
+      "url": "https://www.zo-online.ch/kultur/2026-05-02/sich-auf-der-kyburg-gruseln",
+      "source": "SerpApi"
+    },
+    {
+      "name": "Schloss Kyburg: Das Burgmuseum bei Winterthur im Kanton ...",
+      "date_start": null,
+      "date_end": null,
+      "location": "Suisse",
+      "url": "https://schlosskyburg.ch/",
       "source": "SerpApi"
     },
     {
@@ -419,6 +555,14 @@
       "source": "SerpApi"
     },
     {
+      "name": "Lenzburg Castle - Events Calendar",
+      "date_start": null,
+      "date_end": null,
+      "location": "Suisse",
+      "url": "https://www.schloss-lenzburg.ch/en/veranstaltungen/",
+      "source": "SerpApi"
+    },
+    {
       "name": "Kalender | Veranstaltungen",
       "date_start": null,
       "date_end": null,
@@ -427,11 +571,35 @@
       "source": "SerpApi"
     },
     {
-      "name": "Lenzburgiade: Eröffnungsgala mit Patti Basler & Philippe ...",
+      "name": "Château de Grandson: Renaissance d'une forteresse",
       "date_start": null,
       "date_end": null,
       "location": "Suisse",
-      "url": "https://www.schloss-lenzburg.ch/event/lenzburgiade/",
+      "url": "https://chateau-grandson.ch/",
+      "source": "SerpApi"
+    },
+    {
+      "name": "Événements Archive",
+      "date_start": null,
+      "date_end": null,
+      "location": "Suisse",
+      "url": "https://chateau-grandson.ch/agenda/",
+      "source": "SerpApi"
+    },
+    {
+      "name": "Association des Amis du Château de Grandson (AACG)",
+      "date_start": null,
+      "date_end": null,
+      "location": "Suisse",
+      "url": "https://www.aacg.ch/",
+      "source": "SerpApi"
+    },
+    {
+      "name": "Fête médiévale au Château de Grandson (VD) - Loisirs.ch",
+      "date_start": null,
+      "date_end": null,
+      "location": "Suisse",
+      "url": "https://www.loisirs.ch/agenda/fete-medievale-au-chateau-de-grandson-vd/",
       "source": "SerpApi"
     },
     {
@@ -440,14 +608,6 @@
       "date_end": null,
       "location": "Suisse",
       "url": "https://fribourg.ch/fr/la-gruyere/evenements/",
-      "source": "SerpApi"
-    },
-    {
-      "name": "Evénements",
-      "date_start": null,
-      "date_end": null,
-      "location": "Suisse",
-      "url": "https://www.gruyeres.ch/anlaesseaktuelles?datumBis=18.07.2026&datumVon=18.07.2026",
       "source": "SerpApi"
     },
     {
@@ -475,6 +635,14 @@
       "source": "SerpApi"
     },
     {
+      "name": "Veranstaltungen in Thun – Die beliebtesten Events 2026",
+      "date_start": null,
+      "date_end": null,
+      "location": "Suisse",
+      "url": "https://www.localcities.ch/de/veranstaltungen/thun/1933",
+      "source": "SerpApi"
+    },
+    {
       "name": "Schlosskonzerte Thun - Your June in Thun 2026",
       "date_start": null,
       "date_end": null,
@@ -483,51 +651,27 @@
       "source": "SerpApi"
     },
     {
-      "name": "Events – Schloss Thun",
+      "name": "AUGUST 2026",
       "date_start": null,
       "date_end": null,
       "location": "Suisse",
-      "url": "https://schlossthun.ch/events/",
+      "url": "https://www.thun.ch/dokumente/480733",
       "source": "SerpApi"
     },
     {
-      "name": "Aktuelles – Schlossberg Thun AG",
+      "name": "Alle Veranstaltungen in Thun",
       "date_start": null,
       "date_end": null,
       "location": "Suisse",
-      "url": "https://www.schlossberg-thun.com/de/aktuelles/",
+      "url": "https://www.guidle.com/de/veranstaltungen/thun",
       "source": "SerpApi"
     },
     {
-      "name": "Schlosskonzerte Thun",
+      "name": "Die 59. Schlosskonzerte Thun 2026 starten in zwei Wochen",
       "date_start": null,
       "date_end": null,
       "location": "Suisse",
-      "url": "https://www.kulturticket.ch/fr/3099/schlosskonzerte-thun",
-      "source": "SerpApi"
-    },
-    {
-      "name": "Schätze & Geschichten im Schloss Thun",
-      "date_start": null,
-      "date_end": null,
-      "location": "Suisse",
-      "url": "https://www.myswitzerland.com/en-ca/experiences/events/schaetze-geschichten-im-schloss-thun/",
-      "source": "SerpApi"
-    },
-    {
-      "name": "Schloss Thun – Museumsschloss über Stadt und Thunersee",
-      "date_start": null,
-      "date_end": null,
-      "location": "Suisse",
-      "url": "https://schlossthun.ch/",
-      "source": "SerpApi"
-    },
-    {
-      "name": "Schloss Thun - Bewegungsmelder",
-      "date_start": null,
-      "date_end": null,
-      "location": "Suisse",
-      "url": "https://bewegungsmelder.ch/location/schloss-thun/",
+      "url": "https://www.thuncity.ch/de/News/Newsmeldung?newsid=692",
       "source": "SerpApi"
     }
   ]
