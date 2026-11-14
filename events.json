@@ -1,278 +1,530 @@
 {
-  "generated_at": "2026-11-09T15:41:02.289293+00:00",
-  "count": 34,
+  "generated_at": "2026-11-14T14:56:11Z",
+  "count": 58,
   "events": [
     {
-      "name": "Fête du Fromage à Gruyères | Suisse Tourisme",
-      "date_start": "2026-11-09",
-      "date_end": null,
-      "location": "Suisse",
-      "url": "https://www.myswitzerland.com/fr-ch/decouvrir/manifestations/fete-du-fromage-a-gruyeres/",
-      "source": "SerpApi"
+      "name": "Exposition temporaire – Reliques du futur",
+      "date_start": "2026-09-17",
+      "date_end": "2027-04-25",
+      "location": "Château de Chillon, Veytaux VD",
+      "url": "https://www.chillon.ch/monagenda/exposition-temporaire-reliques-du-futur/",
+      "source": "Château de Chillon",
+      "country": "CH"
     },
     {
-      "name": "Verein Turnei.ch - Mittelalterliche Spektakel, Turniere und ...",
+      "name": "La bataille de Morat : l’histoire en très grand format",
+      "date_start": "2026-10-22",
+      "date_end": "2027-01-25",
+      "location": "Château de Grandson, Grandson VD",
+      "url": "https://chateau-grandson.ch/agenda/la-bataille-de-morat-lhistoire-en-tres-grand-format/",
+      "source": "Château de Grandson",
+      "country": "CH"
+    },
+    {
+      "name": "Mon armoirie à moi",
+      "date_start": "2026-11-04",
+      "date_end": "2026-11-25",
+      "location": "Château de Grandson, Grandson VD",
+      "url": "https://chateau-grandson.ch/agenda/mon-armoirie-a-moi/",
+      "source": "Château de Grandson",
+      "country": "CH",
+      "year_guessed": true
+    },
+    {
+      "name": "Visite guidée entre fort et château",
+      "date_start": "2026-11-15",
+      "date_end": "2026-11-15",
+      "location": "Château de Chillon, Veytaux VD",
+      "url": "https://www.chillon.ch/monagenda/visite-guidee-entre-fort-et-chateau/",
+      "source": "Château de Chillon",
+      "country": "CH"
+    },
+    {
+      "name": "Ateliers d'automne à la journée",
+      "date_start": "2026-11-19",
+      "date_end": "2027-10-21",
+      "location": "Château de Chillon, Veytaux VD",
+      "url": "https://www.chillon.ch/monagenda/ateliers-dautomne-a-la-journee/",
+      "source": "Château de Chillon",
+      "country": "CH"
+    },
+    {
+      "name": "Mittelalter Weihnachtsmarkt am Rheinfall 2026",
       "date_start": "2026-11-20",
-      "date_end": null,
-      "location": "Suisse",
-      "url": "https://www.turnei.ch/",
-      "source": "SerpApi"
+      "date_end": "2026-11-22",
+      "location": "Schloss Laufen (ZH) und Schlössli Wörth (SH)",
+      "url": "https://www.turnei.ch/events-gaesteinfo/mittelalter-weihnachtsmarkt-2026",
+      "source": "Turnei (Hinwil, Winterthur, Wattwil, Laufen, Bubikon…)",
+      "country": "CH"
     },
     {
-      "name": "Marché médiéval – Fantasy Basel",
-      "date_start": null,
-      "date_end": null,
-      "location": "Suisse",
-      "url": "https://www.fantasybasel.ch/fr/marche-medieval",
-      "source": "SerpApi"
+      "name": "Noël le Magnifique",
+      "date_start": "2026-11-21",
+      "date_end": "2027-01-10",
+      "location": "Château de Gruyères, Gruyères FR",
+      "url": "https://www.chateau-gruyeres.ch/expositions/noel-le-magnifique/",
+      "source": "Château de Gruyères",
+      "country": "CH"
     },
     {
-      "name": "Marché de Noël médiéval",
-      "date_start": null,
-      "date_end": null,
-      "location": "Suisse",
-      "url": "https://rhyfall-maendli.ch/fr/events/marche-de-noel-medieval/",
-      "source": "SerpApi"
+      "name": "Visites guidées de l'exposition \"Reliques du futur\"",
+      "date_start": "2026-11-21",
+      "date_end": "2027-03-06",
+      "location": "Château de Chillon, Veytaux VD",
+      "url": "https://www.chillon.ch/monagenda/visites-guidees-de-lexposition-reliques-du-futur/",
+      "source": "Château de Chillon",
+      "country": "CH"
     },
     {
-      "name": "Médiévales de Sainte-Ursanne - Mortecouille",
-      "date_start": null,
-      "date_end": null,
-      "location": "Suisse",
-      "url": "https://mortecouille.ch/evenement/medievales-de-sainte-ursanne/",
-      "source": "SerpApi"
+      "name": "Nachts durchs Schloss: Löse das Rätsel um die verschwundene Braut",
+      "date_start": "2026-11-23",
+      "date_end": "2027-03-06",
+      "location": "Schloss Hallwyl, Seengen AG",
+      "url": "https://www.museumaargau.ch/schloss-hallwyl/event/nachts-durchs-schloss-loese-das-raetsel-um-die-verschwundene-braut",
+      "source": "Museum Aargau (Lenzburg, Hallwyl, Habsburg, Wildegg, Legionärspfad)",
+      "country": "CH"
     },
     {
-      "name": "Fêtes médiévales de suisse",
-      "date_start": null,
-      "date_end": null,
-      "location": "Suisse",
-      "url": "https://www.facebook.com/groups/636520843556538/",
-      "source": "SerpApi"
+      "name": "Der magische Turm: Sagen und Märchen im Schloss Thun",
+      "date_start": "2026-11-26",
+      "date_end": "2026-11-26",
+      "location": "Schloss Thun, Thun BE",
+      "url": "https://schlossthun.ch/veranstaltungen/agenda/",
+      "source": "Schloss Thun",
+      "country": "CH"
     },
     {
-      "name": "Calendrier | Les Ménestrels de la ...",
-      "date_start": null,
-      "date_end": null,
-      "location": "Suisse",
-      "url": "https://www.lesmenestrelsdelatsena.ch/calendrier",
-      "source": "SerpApi"
+      "name": "Noël médiéval au château",
+      "date_start": "2026-11-28",
+      "date_end": "2026-12-13",
+      "location": "Château de Chillon, Veytaux VD",
+      "url": "https://www.chillon.ch/monagenda/noel-medieval-au-chateau/",
+      "source": "Château de Chillon",
+      "country": "CH"
     },
     {
-      "name": "La Bayardine – Fêtes médiévales de Saillon – Découvrez la ...",
-      "date_start": null,
-      "date_end": null,
-      "location": "Suisse",
-      "url": "https://bayardine.ch/",
-      "source": "SerpApi"
+      "name": "Du passé surgit la lumière de demain",
+      "date_start": "2026-12-01",
+      "date_end": "2026-12-13",
+      "location": "Château de Grandson, Grandson VD",
+      "url": "https://chateau-grandson.ch/agenda/du-passe-surgit-la-lumiere-de-demain/",
+      "source": "Château de Grandson",
+      "country": "CH"
     },
     {
-      "name": "Fête Médiévale au Château de la Batiaz - Martigny",
-      "date_start": null,
-      "date_end": null,
-      "location": "Suisse",
-      "url": "https://www.valaisfamily.ch/N798811/fete-medievale.html",
-      "source": "SerpApi"
+      "name": "Mon armoirie à moi",
+      "date_start": "2026-12-02",
+      "date_end": "2026-12-16",
+      "location": "Château de Grandson, Grandson VD",
+      "url": "https://chateau-grandson.ch/agenda/mon-armoirie-a-moi-2/",
+      "source": "Château de Grandson",
+      "country": "CH",
+      "year_guessed": true
     },
     {
-      "name": "Médiévales de Compesières 2026 - Login - EventKit",
-      "date_start": null,
-      "date_end": null,
-      "location": "Suisse",
-      "url": "https://app.eventkit.ch/events/1c6c2861-3de0-422d-82f1-db6683132743",
-      "source": "SerpApi"
+      "name": "Caligatus - Marché de Noël médiéval – Zofingen",
+      "date_start": "2026-12-04",
+      "date_end": "2026-12-06",
+      "location": "Zofingen",
+      "url": "https://www.arbor-living-history.ch/agenda-medieval",
+      "source": "Agenda médiéval Arbor",
+      "country": "CH"
     },
     {
-      "name": "Geneve, Lausanne - SWlSS : annonce.",
-      "date_start": null,
-      "date_end": null,
-      "location": "Suisse",
-      "url": "https://www.facebook.com/groups/ge666/posts/10163006748320233/",
-      "source": "SerpApi"
+      "name": "Wiehnachtsmärt Schloss Wildegg",
+      "date_start": "2026-12-04",
+      "date_end": "2026-12-04",
+      "location": "Schloss Wildegg, Möriken-Wildegg AG",
+      "url": "https://www.museumaargau.ch/schloss-wildegg/event/wiehnachtsmaert-schloss-wildegg",
+      "source": "Museum Aargau (Lenzburg, Hallwyl, Habsburg, Wildegg, Legionärspfad)",
+      "country": "CH"
     },
     {
-      "name": "Médiévales de Compesières 2026 - SideSeat",
-      "date_start": null,
-      "date_end": null,
-      "location": "Suisse",
-      "url": "https://sideseat.ch/place/oa-29779691",
-      "source": "SerpApi"
+      "name": "Banquet médiéval - 5 décembre",
+      "date_start": "2026-12-05",
+      "date_end": "2026-12-05",
+      "location": "Château de Vaulruz, Château de Vaulruz, 1627 Vaulruz, Suisse",
+      "url": "https://www.arbor-living-history.ch/event-details/banquet-medieval-5-decembre",
+      "source": "Arbor Living History (Vaulruz…)",
+      "country": "CH"
     },
     {
-      "name": "Mittelalterkalender Schweiz - Mirimor Rund ums Mittelalter",
-      "date_start": null,
-      "date_end": null,
-      "location": "Suisse",
-      "url": "https://www.mirimor.ch/kalender/",
-      "source": "SerpApi"
+      "name": "Fête médiévale de Vaulruz 2026",
+      "date_start": "2026-12-05",
+      "date_end": "2026-12-06",
+      "location": "Vaulruz, Château de Vaulruz, 1627 Vaulruz, Suisse",
+      "url": "https://www.arbor-living-history.ch/event-details/fete-medievale-de-vaulruz-2026",
+      "source": "Arbor Living History (Vaulruz…)",
+      "country": "CH"
     },
     {
-      "name": "Schweizer Mittelalterkalender - Was läuft wo?",
-      "date_start": null,
-      "date_end": null,
-      "location": "Suisse",
-      "url": "https://www.drachenhort.ch/mittelalterkalender",
-      "source": "SerpApi"
+      "name": "Nachts im Museum",
+      "date_start": "2026-12-05",
+      "date_end": "2026-12-05",
+      "location": "Schloss Thun, Thun BE",
+      "url": "https://schlossthun.ch/veranstaltungen/agenda/",
+      "source": "Schloss Thun",
+      "country": "CH"
     },
     {
-      "name": "Mittelalterfest",
-      "date_start": null,
-      "date_end": null,
-      "location": "Suisse",
-      "url": "https://www.lachen.ch/aktuells/events.html/20/event/1425/eventdate/37584",
-      "source": "SerpApi"
+      "name": "Samichlaus auf dem Schlossberg",
+      "date_start": "2026-12-06",
+      "date_end": "2026-12-06",
+      "location": "Schloss Thun, Thun BE",
+      "url": "https://schlossthun.ch/veranstaltungen/agenda/",
+      "source": "Schloss Thun",
+      "country": "CH"
     },
     {
-      "name": "Mittelalterfest Zug",
-      "date_start": null,
-      "date_end": null,
-      "location": "Suisse",
-      "url": "https://www.zug-tourismus.ch/de/mittelalterfest-zug/",
-      "source": "SerpApi"
+      "name": "Visite guidée du mois",
+      "date_start": "2026-12-06",
+      "date_end": "2026-12-06",
+      "location": "Château de Grandson, Grandson VD",
+      "url": "https://chateau-grandson.ch/agenda/visite-guidee-du-mois-6/",
+      "source": "Château de Grandson",
+      "country": "CH"
     },
     {
-      "name": "Mittelaltermarkt mit viel Spektakel - Schloss Lenzburg",
-      "date_start": null,
-      "date_end": null,
-      "location": "Suisse",
-      "url": "https://www.museumaargau.ch/schloss-lenzburg/event/mittelaltermarkt",
-      "source": "SerpApi"
+      "name": "Noël Drako",
+      "date_start": "2026-12-09",
+      "date_end": "2026-12-09",
+      "location": "Château de Chillon, Veytaux VD",
+      "url": "https://www.chillon.ch/monagenda/noel-drako-2/",
+      "source": "Château de Chillon",
+      "country": "CH"
     },
     {
-      "name": "Mittelaltermarkt und mehr: Veranstaltungen, um in ... - Freizeit.ch",
-      "date_start": null,
-      "date_end": null,
-      "location": "Suisse",
-      "url": "https://www.freizeit.ch/dossier/mittelaltermarkt-und-mehr-veranstaltungen-um-in-vergangene-zeiten-einzutauchen/",
-      "source": "SerpApi"
-    },
-    {
-      "name": "Mittelalterfest „La Spada nella Rocca“",
-      "date_start": null,
-      "date_end": null,
-      "location": "Suisse",
-      "url": "https://fortezzabellinzona.ch/de/mostre-attivita/mittelalterfest-la-spada-nella-rocca/",
-      "source": "SerpApi"
-    },
-    {
-      "name": "Mittelalterfest in SAINT-URSANNE (CH)",
-      "date_start": null,
-      "date_end": null,
-      "location": "Suisse",
-      "url": "https://www.rondedesfetes.fr/agenda-fetes/Saint-Ursanne-Mittelalterfest/100.html",
-      "source": "SerpApi"
-    },
-    {
-      "name": "Saisonstart Schloss Lenzburg",
-      "date_start": null,
-      "date_end": null,
-      "location": "Suisse",
-      "url": "https://www.ag.ch/de/themen/kultur-sport/kultur/museum-aargau/schloss-lenzburg?event=saisonstart-schloss-lenzburg-cd263e4b-7054-457d-8cf8-55bdbe10a523_de",
-      "source": "SerpApi"
-    },
-    {
-      "name": "Mittelaltermarkt Schloss Lenzburg 2026",
-      "date_start": null,
-      "date_end": null,
-      "location": "Suisse",
-      "url": "https://vehi-mercatus.de/marktkalender/mittelaltermarkt-schloss-lenzburg-2026/",
-      "source": "SerpApi"
-    },
-    {
-      "name": "Öffnungszeiten und Eintrittspreise - Schloss Lenzburg",
-      "date_start": null,
-      "date_end": null,
-      "location": "Suisse",
-      "url": "https://www.museumaargau.ch/schloss-lenzburg/oeffnungszeiten-und-eintritte",
-      "source": "SerpApi"
-    },
-    {
-      "name": "The Music of Hans Zimmer & Others - OPEN AIR im ...",
-      "date_start": null,
-      "date_end": null,
-      "location": "Suisse",
-      "url": "https://www.schloss-lenzburg.ch/event/the-music-of-hans-zimmer-others/",
-      "source": "SerpApi"
-    },
-    {
-      "name": "Château Chillon: Femmes dans la vie du château – hier et ...",
-      "date_start": null,
-      "date_end": null,
-      "location": "Suisse",
-      "url": "https://www.chillon.ch/monagenda/femmes-dans-la-vie-du-chateau-hier-et-aujourdhui/",
-      "source": "SerpApi"
-    },
-    {
-      "name": "Les Georges au château",
-      "date_start": null,
-      "date_end": null,
-      "location": "Suisse",
-      "url": "https://www.chateau-gruyeres.ch/events/les-georges-au-chateau/",
-      "source": "SerpApi"
-    },
-    {
-      "name": "Journée des Châteaux suisses à Gruyères",
-      "date_start": null,
-      "date_end": null,
-      "location": "Suisse",
-      "url": "https://www.localcities.ch/fr/evenements/gruyeres/2889/4776805?eventDateTime=04.10.2026%20%2010:00%20-%2018:00",
-      "source": "SerpApi"
-    },
-    {
-      "name": "Nuit des Musées au Château de Gruyères",
-      "date_start": null,
-      "date_end": null,
-      "location": "Suisse",
-      "url": "https://www.tempslibre.ch/fribourg/manifestations/454366-nuit-des-mus-es-au-ch-teau-de-gruy-res",
-      "source": "SerpApi"
-    },
-    {
-      "name": "Ausgezeichnet! Der goldene Stern von Thun",
-      "date_start": null,
-      "date_end": null,
-      "location": "Suisse",
-      "url": "https://schlossthun.ch/ausstellung/sonderausstellung/",
-      "source": "SerpApi"
-    },
-    {
-      "name": "Stadt Thun - Events",
-      "date_start": null,
-      "date_end": null,
-      "location": "Suisse",
-      "url": "https://www.thun.ch/events",
-      "source": "SerpApi"
-    },
-    {
-      "name": "Night of Lights on Thun Castle Hill 2026",
-      "date_start": null,
-      "date_end": null,
-      "location": "Suisse",
-      "url": "https://schlossthun.ch/en/events/night-of-lights/",
-      "source": "SerpApi"
-    },
-    {
-      "name": "Schweizer Schlössertag im Schloss Thun",
-      "date_start": null,
-      "date_end": null,
-      "location": "Suisse",
-      "url": "https://www.bka.ch/event/schweizer-schlossertag-im-schloss-thun-reisen-im-mittelalter",
-      "source": "SerpApi"
-    },
-    {
-      "name": "Angebote & Veranstaltungen - Schloss Thun",
-      "date_start": null,
-      "date_end": null,
-      "location": "Suisse",
-      "url": "https://www.thunerseeschloesser.ch/de/schloss-thun/angebote-veranstaltungen",
-      "source": "SerpApi"
+      "name": "Advents-Flohmarkt",
+      "date_start": "2026-12-11",
+      "date_end": "2026-12-11",
+      "location": "Schloss Kyburg, Kyburg ZH",
+      "url": "https://schlosskyburg.ch/veranstaltungen/advents-flohmarkt/",
+      "source": "Schloss Kyburg",
+      "country": "CH"
     },
     {
       "name": "Lichtnacht auf dem Thuner Schlossberg",
-      "date_start": null,
-      "date_end": null,
-      "location": "Suisse",
-      "url": "https://www.thunersee.ch/planen/events/event/lichtnacht-auf-dem-thuner-schlossberg",
-      "source": "SerpApi"
+      "date_start": "2026-12-12",
+      "date_end": "2026-12-12",
+      "location": "Schloss Thun, Thun BE",
+      "url": "https://schlossthun.ch/veranstaltungen/agenda/",
+      "source": "Schloss Thun",
+      "country": "CH"
+    },
+    {
+      "name": "Tournoi d'archerie du Loup",
+      "date_start": "2026-12-20",
+      "date_end": "2026-12-20",
+      "location": "Cabane de la Source - Rossens",
+      "url": "https://www.laguildedesombresang.com",
+      "source": "La Guilde de Sombre-Sang",
+      "country": "CH"
+    },
+    {
+      "name": "Visite guidée du mois",
+      "date_start": "2027-01-10",
+      "date_end": "2027-01-10",
+      "location": "Château de Grandson, Grandson VD",
+      "url": "https://chateau-grandson.ch/agenda/visite-guidee-du-mois-7/",
+      "source": "Château de Grandson",
+      "country": "CH"
+    },
+    {
+      "name": "Weltenzauber Winterthur 2027",
+      "date_start": "2027-02-19",
+      "date_end": "2027-02-21",
+      "location": "Eulachhallen Winterthur",
+      "url": "https://www.turnei.ch/events-gaesteinfo/weltenzauber-winterthur-2026",
+      "source": "Turnei (Hinwil, Winterthur, Wattwil, Laufen, Bubikon…)",
+      "country": "CH"
+    },
+    {
+      "name": "Atelier pour adultes – collage",
+      "date_start": "2027-03-21",
+      "date_end": "2027-03-21",
+      "location": "Château de Chillon, Veytaux VD",
+      "url": "https://www.chillon.ch/monagenda/atelier-pour-adultes-collage/",
+      "source": "Château de Chillon",
+      "country": "CH"
+    },
+    {
+      "name": "Familienführung mit Ausbildung zum Legionär",
+      "date_start": "2027-03-28",
+      "date_end": "2027-03-28",
+      "location": "Legionärspfad, Windisch AG",
+      "url": "https://www.museumaargau.ch/legionaerspfad/event/familienfuehrung-mit-ausbildung-zum-legionaer",
+      "source": "Museum Aargau (Lenzburg, Hallwyl, Habsburg, Wildegg, Legionärspfad)",
+      "country": "CH"
+    },
+    {
+      "name": "Kurzführung durch die Legionärsunterkünfte",
+      "date_start": "2027-03-28",
+      "date_end": "2027-03-28",
+      "location": "Legionärspfad, Windisch AG",
+      "url": "https://www.museumaargau.ch/legionaerspfad/event/kurzfuehrung-durch-die-legionaersunterkuenfte",
+      "source": "Museum Aargau (Lenzburg, Hallwyl, Habsburg, Wildegg, Legionärspfad)",
+      "country": "CH"
+    },
+    {
+      "name": "PâKOCHâTO",
+      "date_start": "2027-03-28",
+      "date_end": "2027-03-28",
+      "location": "Château de Chillon, Veytaux VD",
+      "url": "https://www.chillon.ch/monagenda/pakochato-2/",
+      "source": "Château de Chillon",
+      "country": "CH"
+    },
+    {
+      "name": "Ateliers de printemps – l'art de la reliure",
+      "date_start": "2027-03-30",
+      "date_end": "2027-04-06",
+      "location": "Château de Chillon, Veytaux VD",
+      "url": "https://www.chillon.ch/monagenda/ateliers-de-printemps-lart-de-la-reliure/",
+      "source": "Château de Chillon",
+      "country": "CH"
+    },
+    {
+      "name": "Ateliers de printemps – Trésors de bois",
+      "date_start": "2027-04-01",
+      "date_end": "2027-04-08",
+      "location": "Château de Chillon, Veytaux VD",
+      "url": "https://www.chillon.ch/monagenda/ateliers-de-printemps-tresors-de-bois-2/",
+      "source": "Château de Chillon",
+      "country": "CH"
+    },
+    {
+      "name": "Marché médiéval Caligatus Feleus – Schloss Laupen",
+      "date_start": "2027-04-16",
+      "date_end": "2027-04-18",
+      "location": "Schloss Laupen",
+      "url": "https://www.caligatus-feleus.ch",
+      "source": "Caligatus Feleus",
+      "country": "CH"
+    },
+    {
+      "name": "Wilhelmina und die Wasserburg",
+      "date_start": "2027-04-17",
+      "date_end": "2027-04-17",
+      "location": "Schloss Hallwyl, Seengen AG",
+      "url": "https://www.museumaargau.ch/schloss-hallwyl/event/wilhelmina-und-die-wasserburg",
+      "source": "Museum Aargau (Lenzburg, Hallwyl, Habsburg, Wildegg, Legionärspfad)",
+      "country": "CH"
+    },
+    {
+      "name": "Ateliers pour adultes – enluminure et calligraphie",
+      "date_start": "2027-04-18",
+      "date_end": "2027-04-18",
+      "location": "Château de Chillon, Veytaux VD",
+      "url": "https://www.chillon.ch/monagenda/ateliers-pour-adultes-enluminure-et-calligraphie/",
+      "source": "Château de Chillon",
+      "country": "CH"
+    },
+    {
+      "name": "Walpurgis Fantasy- und Mittelalterspektakel 2027",
+      "date_start": "2027-04-23",
+      "date_end": "2027-04-25",
+      "location": "Markthalle Toggenburg",
+      "url": "https://www.turnei.ch/events-gaesteinfo/walpurgis-fantasy-und-mittelalterspektakel-2027",
+      "source": "Turnei (Hinwil, Winterthur, Wattwil, Laufen, Bubikon…)",
+      "country": "CH"
+    },
+    {
+      "name": "L'éveil de la Bâtiaz",
+      "date_start": "2027-04-24",
+      "date_end": "2027-04-25",
+      "location": "Martigny VS",
+      "url": "https://www.laguildedesombresang.com/eveil2027",
+      "source": "Page suivie",
+      "country": "CH"
+    },
+    {
+      "name": "Pentathlon de la poésie",
+      "date_start": "2027-04-25",
+      "date_end": "2027-04-25",
+      "location": "Château de Chillon, Veytaux VD",
+      "url": "https://www.chillon.ch/monagenda/pentathlon-de-la-poesie/",
+      "source": "Château de Chillon",
+      "country": "CH"
+    },
+    {
+      "name": "Mittelalterspektakel Hinwil 2027",
+      "date_start": "2027-05-07",
+      "date_end": "2027-05-09",
+      "location": "Obererlosen, Hinwil",
+      "url": "https://www.turnei.ch/events-gaesteinfo/mittelalterspektakel-hinwil-2027",
+      "source": "Turnei (Hinwil, Winterthur, Wattwil, Laufen, Bubikon…)",
+      "country": "CH"
+    },
+    {
+      "name": "Les Grandes Médiévales d'Andilly",
+      "date_start": "2027-05-15",
+      "date_end": "2027-05-23",
+      "location": "Grand Parc d'Andilly (74)",
+      "url": "https://www.grandparc-andilly.com/les-grandes-medievales",
+      "source": "Page suivie",
+      "country": "FR"
+    },
+    {
+      "name": "Marché médiéval Caligatus Feleus – Allmendingen",
+      "date_start": "2027-05-21",
+      "date_end": "2027-05-23",
+      "location": "Allmendingen",
+      "url": "https://www.caligatus-feleus.ch",
+      "source": "Caligatus Feleus",
+      "country": "CH"
+    },
+    {
+      "name": "Nuit des musées de la Riviera vaudoise à Chillon",
+      "date_start": "2027-05-29",
+      "date_end": "2027-05-29",
+      "location": "Château de Chillon, Veytaux VD",
+      "url": "https://www.chillon.ch/monagenda/nuit-des-musees-de-la-riviera-vaudoise-a-chillon/",
+      "source": "Château de Chillon",
+      "country": "CH"
+    },
+    {
+      "name": "Greenfield Mittelaltermarkt",
+      "date_start": "2027-06-10",
+      "date_end": "2027-06-12",
+      "location": "Interlaken BE",
+      "url": "https://www.greenfieldfestival.ch/",
+      "source": "Page suivie",
+      "country": "CH"
+    },
+    {
+      "name": "Marché d'artisans historique de Huttwil",
+      "date_start": "2027-07-03",
+      "date_end": "2027-07-04",
+      "location": "Huttwil BE",
+      "url": "https://www.spycher-handwerk.ch/de/anlaesse/historischer-handwerkermarkt-huttwil",
+      "source": "Page suivie",
+      "country": "CH"
+    },
+    {
+      "name": "Erzählabend mit Stimmen aus rund 1000 Jahren Schlossgeschichte",
+      "date_start": "2027-07-09",
+      "date_end": "2027-07-09",
+      "location": "Schloss Kyburg, Kyburg ZH",
+      "url": "https://schlosskyburg.ch/veranstaltungen/erzaehlabend-mit-stimmen-aus-rund-1000-jahren-schlossgeschichte/",
+      "source": "Schloss Kyburg",
+      "country": "CH"
+    },
+    {
+      "name": "Médiévales de Sainte-Ursanne",
+      "date_start": "2027-07-09",
+      "date_end": "2027-07-11",
+      "location": "Saint-Ursanne JU",
+      "url": "https://medievales.ch/",
+      "source": "Page suivie",
+      "country": "CH"
+    },
+    {
+      "name": "Marché médiéval Caligatus Feleus – Burgdorf",
+      "date_start": "2027-07-23",
+      "date_end": "2027-07-25",
+      "location": "Burgdorf",
+      "url": "https://www.caligatus-feleus.ch",
+      "source": "Caligatus Feleus",
+      "country": "CH"
+    },
+    {
+      "name": "Les Médiévaleries de Saint-Jean-d'Aulps",
+      "date_start": "2027-08-14",
+      "date_end": "2027-08-15",
+      "location": "Saint-Jean-d'Aulps (74)",
+      "url": "https://www.valleedaulps.com/temps-fort/medievaleries-haute-savoie/",
+      "source": "Page suivie",
+      "country": "FR"
+    },
+    {
+      "name": "Arbor Pagan Festival",
+      "date_start": "2027-08-26",
+      "date_end": "2027-08-29",
+      "location": "Fribourg FR",
+      "url": "https://www.arbor-pagan-festival.ch",
+      "source": "Page suivie",
+      "country": "CH"
+    },
+    {
+      "name": "Mise en bouteilles à l'ancienne du Clos de Chillon",
+      "date_start": "2027-09-11",
+      "date_end": "2027-09-11",
+      "location": "Château de Chillon, Veytaux VD",
+      "url": "https://www.chillon.ch/monagenda/mise-en-bouteilles-a-lancienne-du-clos-de-chillon-2/",
+      "source": "Château de Chillon",
+      "country": "CH"
+    },
+    {
+      "name": "Marché médiéval Caligatus Feleus – Biel",
+      "date_start": "2027-09-17",
+      "date_end": "2027-09-19",
+      "location": "Biel",
+      "url": "https://www.caligatus-feleus.ch",
+      "source": "Caligatus Feleus",
+      "country": "CH"
+    },
+    {
+      "name": "Marché médiéval Herrendingen",
+      "date_start": "2027-09-25",
+      "date_end": "2027-09-26",
+      "location": "Eschenbach LU",
+      "url": "https://www.arbor-noctuarum.ch",
+      "source": "Page suivie",
+      "country": "CH"
+    },
+    {
+      "name": "Journée des Châteaux suisses",
+      "date_start": "2027-10-03",
+      "date_end": "2027-10-03",
+      "location": "Château de Chillon, Veytaux VD",
+      "url": "https://www.chillon.ch/monagenda/journee-des-chateaux-suisses-3/",
+      "source": "Château de Chillon",
+      "country": "CH"
+    },
+    {
+      "name": "Nuit de l'Épouvante",
+      "date_start": "2027-10-09",
+      "date_end": "2027-10-09",
+      "location": "Château de Chillon, Veytaux VD",
+      "url": "https://www.chillon.ch/monagenda/nuit-de-lepouvante-3/",
+      "source": "Château de Chillon",
+      "country": "CH"
+    },
+    {
+      "name": "En famille aux musées au Château de Chillon",
+      "date_start": "2027-11-06",
+      "date_end": "2027-11-07",
+      "location": "Château de Chillon, Veytaux VD",
+      "url": "https://www.chillon.ch/monagenda/en-famille-aux-musees-au-chateau-de-chillon/",
+      "source": "Château de Chillon",
+      "country": "CH"
+    },
+    {
+      "name": "100 ans de l'Association suisse des châteaux forts",
+      "date_start": "2027-11-21",
+      "date_end": "2027-11-21",
+      "location": "Château de Chillon, Veytaux VD",
+      "url": "https://www.chillon.ch/monagenda/100-ans-de-lassociation-suisse-des-chateaux-forts/",
+      "source": "Château de Chillon",
+      "country": "CH"
+    },
+    {
+      "name": "Noël médiéval à Chillon",
+      "date_start": "2027-11-27",
+      "date_end": "2027-12-12",
+      "location": "Château de Chillon, Veytaux VD",
+      "url": "https://www.chillon.ch/monagenda/noel-medieval-a-chillon/",
+      "source": "Château de Chillon",
+      "country": "CH"
+    },
+    {
+      "name": "Noël Drako",
+      "date_start": "2027-12-08",
+      "date_end": "2027-12-08",
+      "location": "Château de Chillon, Veytaux VD",
+      "url": "https://www.chillon.ch/monagenda/noel-drako-3/",
+      "source": "Château de Chillon",
+      "country": "CH"
     }
   ]
 }
