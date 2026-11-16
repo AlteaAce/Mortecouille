@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-11-14T14:56:11Z",
-  "count": 58,
+  "generated_at": "2026-11-16T15:16:56Z",
+  "count": 57,
   "events": [
     {
       "name": "Exposition temporaire – Reliques du futur",
@@ -29,15 +29,6 @@
       "source": "Château de Grandson",
       "country": "CH",
       "year_guessed": true
-    },
-    {
-      "name": "Visite guidée entre fort et château",
-      "date_start": "2026-11-15",
-      "date_end": "2026-11-15",
-      "location": "Château de Chillon, Veytaux VD",
-      "url": "https://www.chillon.ch/monagenda/visite-guidee-entre-fort-et-chateau/",
-      "source": "Château de Chillon",
-      "country": "CH"
     },
     {
       "name": "Ateliers d'automne à la journée",
@@ -392,15 +383,6 @@
       "country": "CH"
     },
     {
-      "name": "Marché d'artisans historique de Huttwil",
-      "date_start": "2027-07-03",
-      "date_end": "2027-07-04",
-      "location": "Huttwil BE",
-      "url": "https://www.spycher-handwerk.ch/de/anlaesse/historischer-handwerkermarkt-huttwil",
-      "source": "Page suivie",
-      "country": "CH"
-    },
-    {
       "name": "Erzählabend mit Stimmen aus rund 1000 Jahren Schlossgeschichte",
       "date_start": "2027-07-09",
       "date_end": "2027-07-09",
@@ -469,6 +451,15 @@
       "date_end": "2027-09-26",
       "location": "Eschenbach LU",
       "url": "https://www.arbor-noctuarum.ch",
+      "source": "Page suivie",
+      "country": "CH"
+    },
+    {
+      "name": "Festival des sorcières",
+      "date_start": "2027-10-02",
+      "date_end": "2027-10-03",
+      "location": "La Sarraz VD",
+      "url": "https://festivaldessorcieres.wixsite.com/festivaldessorcieres",
       "source": "Page suivie",
       "country": "CH"
     },
