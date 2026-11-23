@@ -1,16 +1,7 @@
 {
-  "generated_at": "2026-11-16T15:16:56Z",
-  "count": 57,
+  "generated_at": "2026-11-23T17:43:25Z",
+  "count": 42,
   "events": [
-    {
-      "name": "Exposition temporaire – Reliques du futur",
-      "date_start": "2026-09-17",
-      "date_end": "2027-04-25",
-      "location": "Château de Chillon, Veytaux VD",
-      "url": "https://www.chillon.ch/monagenda/exposition-temporaire-reliques-du-futur/",
-      "source": "Château de Chillon",
-      "country": "CH"
-    },
     {
       "name": "La bataille de Morat : l’histoire en très grand format",
       "date_start": "2026-10-22",
@@ -31,39 +22,12 @@
       "year_guessed": true
     },
     {
-      "name": "Ateliers d'automne à la journée",
-      "date_start": "2026-11-19",
-      "date_end": "2027-10-21",
-      "location": "Château de Chillon, Veytaux VD",
-      "url": "https://www.chillon.ch/monagenda/ateliers-dautomne-a-la-journee/",
-      "source": "Château de Chillon",
-      "country": "CH"
-    },
-    {
-      "name": "Mittelalter Weihnachtsmarkt am Rheinfall 2026",
-      "date_start": "2026-11-20",
-      "date_end": "2026-11-22",
-      "location": "Schloss Laufen (ZH) und Schlössli Wörth (SH)",
-      "url": "https://www.turnei.ch/events-gaesteinfo/mittelalter-weihnachtsmarkt-2026",
-      "source": "Turnei (Hinwil, Winterthur, Wattwil, Laufen, Bubikon…)",
-      "country": "CH"
-    },
-    {
       "name": "Noël le Magnifique",
       "date_start": "2026-11-21",
       "date_end": "2027-01-10",
       "location": "Château de Gruyères, Gruyères FR",
       "url": "https://www.chateau-gruyeres.ch/expositions/noel-le-magnifique/",
       "source": "Château de Gruyères",
-      "country": "CH"
-    },
-    {
-      "name": "Visites guidées de l'exposition \"Reliques du futur\"",
-      "date_start": "2026-11-21",
-      "date_end": "2027-03-06",
-      "location": "Château de Chillon, Veytaux VD",
-      "url": "https://www.chillon.ch/monagenda/visites-guidees-de-lexposition-reliques-du-futur/",
-      "source": "Château de Chillon",
       "country": "CH"
     },
     {
@@ -82,15 +46,6 @@
       "location": "Schloss Thun, Thun BE",
       "url": "https://schlossthun.ch/veranstaltungen/agenda/",
       "source": "Schloss Thun",
-      "country": "CH"
-    },
-    {
-      "name": "Noël médiéval au château",
-      "date_start": "2026-11-28",
-      "date_end": "2026-12-13",
-      "location": "Château de Chillon, Veytaux VD",
-      "url": "https://www.chillon.ch/monagenda/noel-medieval-au-chateau/",
-      "source": "Château de Chillon",
       "country": "CH"
     },
     {
@@ -176,15 +131,6 @@
       "country": "CH"
     },
     {
-      "name": "Noël Drako",
-      "date_start": "2026-12-09",
-      "date_end": "2026-12-09",
-      "location": "Château de Chillon, Veytaux VD",
-      "url": "https://www.chillon.ch/monagenda/noel-drako-2/",
-      "source": "Château de Chillon",
-      "country": "CH"
-    },
-    {
       "name": "Advents-Flohmarkt",
       "date_start": "2026-12-11",
       "date_end": "2026-12-11",
@@ -230,15 +176,6 @@
       "country": "CH"
     },
     {
-      "name": "Atelier pour adultes – collage",
-      "date_start": "2027-03-21",
-      "date_end": "2027-03-21",
-      "location": "Château de Chillon, Veytaux VD",
-      "url": "https://www.chillon.ch/monagenda/atelier-pour-adultes-collage/",
-      "source": "Château de Chillon",
-      "country": "CH"
-    },
-    {
       "name": "Familienführung mit Ausbildung zum Legionär",
       "date_start": "2027-03-28",
       "date_end": "2027-03-28",
@@ -254,33 +191,6 @@
       "location": "Legionärspfad, Windisch AG",
       "url": "https://www.museumaargau.ch/legionaerspfad/event/kurzfuehrung-durch-die-legionaersunterkuenfte",
       "source": "Museum Aargau (Lenzburg, Hallwyl, Habsburg, Wildegg, Legionärspfad)",
-      "country": "CH"
-    },
-    {
-      "name": "PâKOCHâTO",
-      "date_start": "2027-03-28",
-      "date_end": "2027-03-28",
-      "location": "Château de Chillon, Veytaux VD",
-      "url": "https://www.chillon.ch/monagenda/pakochato-2/",
-      "source": "Château de Chillon",
-      "country": "CH"
-    },
-    {
-      "name": "Ateliers de printemps – l'art de la reliure",
-      "date_start": "2027-03-30",
-      "date_end": "2027-04-06",
-      "location": "Château de Chillon, Veytaux VD",
-      "url": "https://www.chillon.ch/monagenda/ateliers-de-printemps-lart-de-la-reliure/",
-      "source": "Château de Chillon",
-      "country": "CH"
-    },
-    {
-      "name": "Ateliers de printemps – Trésors de bois",
-      "date_start": "2027-04-01",
-      "date_end": "2027-04-08",
-      "location": "Château de Chillon, Veytaux VD",
-      "url": "https://www.chillon.ch/monagenda/ateliers-de-printemps-tresors-de-bois-2/",
-      "source": "Château de Chillon",
       "country": "CH"
     },
     {
@@ -302,15 +212,6 @@
       "country": "CH"
     },
     {
-      "name": "Ateliers pour adultes – enluminure et calligraphie",
-      "date_start": "2027-04-18",
-      "date_end": "2027-04-18",
-      "location": "Château de Chillon, Veytaux VD",
-      "url": "https://www.chillon.ch/monagenda/ateliers-pour-adultes-enluminure-et-calligraphie/",
-      "source": "Château de Chillon",
-      "country": "CH"
-    },
-    {
       "name": "Walpurgis Fantasy- und Mittelalterspektakel 2027",
       "date_start": "2027-04-23",
       "date_end": "2027-04-25",
@@ -326,15 +227,6 @@
       "location": "Martigny VS",
       "url": "https://www.laguildedesombresang.com/eveil2027",
       "source": "Page suivie",
-      "country": "CH"
-    },
-    {
-      "name": "Pentathlon de la poésie",
-      "date_start": "2027-04-25",
-      "date_end": "2027-04-25",
-      "location": "Château de Chillon, Veytaux VD",
-      "url": "https://www.chillon.ch/monagenda/pentathlon-de-la-poesie/",
-      "source": "Château de Chillon",
       "country": "CH"
     },
     {
@@ -362,15 +254,6 @@
       "location": "Allmendingen",
       "url": "https://www.caligatus-feleus.ch",
       "source": "Caligatus Feleus",
-      "country": "CH"
-    },
-    {
-      "name": "Nuit des musées de la Riviera vaudoise à Chillon",
-      "date_start": "2027-05-29",
-      "date_end": "2027-05-29",
-      "location": "Château de Chillon, Veytaux VD",
-      "url": "https://www.chillon.ch/monagenda/nuit-des-musees-de-la-riviera-vaudoise-a-chillon/",
-      "source": "Château de Chillon",
       "country": "CH"
     },
     {
@@ -410,6 +293,15 @@
       "country": "CH"
     },
     {
+      "name": "Mittelalterspektakel Anno 1291 2027",
+      "date_start": "2027-07-30",
+      "date_end": "2027-08-01",
+      "location": "Allmend, Altstätten SG",
+      "url": "https://www.turnei.ch/events-gaesteinfo/mittelalterspektakel-anno-1291-2027",
+      "source": "Turnei (Hinwil, Winterthur, Wattwil, Laufen, Bubikon…)",
+      "country": "CH"
+    },
+    {
       "name": "Les Médiévaleries de Saint-Jean-d'Aulps",
       "date_start": "2027-08-14",
       "date_end": "2027-08-15",
@@ -428,12 +320,12 @@
       "country": "CH"
     },
     {
-      "name": "Mise en bouteilles à l'ancienne du Clos de Chillon",
-      "date_start": "2027-09-11",
-      "date_end": "2027-09-11",
-      "location": "Château de Chillon, Veytaux VD",
-      "url": "https://www.chillon.ch/monagenda/mise-en-bouteilles-a-lancienne-du-clos-de-chillon-2/",
-      "source": "Château de Chillon",
+      "name": "Fantasy Spektakulum Riedikon zu Uster 2027",
+      "date_start": "2027-08-27",
+      "date_end": "2027-08-29",
+      "location": "Riedikon bei Uster",
+      "url": "https://www.turnei.ch/events-gaesteinfo/fantasy-spektakulum-riedikon-zu-uster-2027",
+      "source": "Turnei (Hinwil, Winterthur, Wattwil, Laufen, Bubikon…)",
       "country": "CH"
     },
     {
@@ -443,6 +335,15 @@
       "location": "Biel",
       "url": "https://www.caligatus-feleus.ch",
       "source": "Caligatus Feleus",
+      "country": "CH"
+    },
+    {
+      "name": "Mittelalter Handwerkermarkt im Ritterhaus zu Bubikon 2027",
+      "date_start": "2027-09-24",
+      "date_end": "2027-09-26",
+      "location": "Ritterhaus in Bubikon",
+      "url": "https://www.turnei.ch/events-gaesteinfo/mittelalter-handwerkermarkt-im-ritterhaus-zu-bubikon-2027",
+      "source": "Turnei (Hinwil, Winterthur, Wattwil, Laufen, Bubikon…)",
       "country": "CH"
     },
     {
@@ -464,57 +365,21 @@
       "country": "CH"
     },
     {
-      "name": "Journée des Châteaux suisses",
-      "date_start": "2027-10-03",
-      "date_end": "2027-10-03",
-      "location": "Château de Chillon, Veytaux VD",
-      "url": "https://www.chillon.ch/monagenda/journee-des-chateaux-suisses-3/",
-      "source": "Château de Chillon",
+      "name": "Halloween Mittelalterspektakel Winterthur 2027",
+      "date_start": "2027-10-15",
+      "date_end": "2027-10-17",
+      "location": "Teuchelweiherplatz, Winterthur",
+      "url": "https://www.turnei.ch/events-gaesteinfo/halloween-mittelalterspektakel-winterthur-2027",
+      "source": "Turnei (Hinwil, Winterthur, Wattwil, Laufen, Bubikon…)",
       "country": "CH"
     },
     {
-      "name": "Nuit de l'Épouvante",
-      "date_start": "2027-10-09",
-      "date_end": "2027-10-09",
-      "location": "Château de Chillon, Veytaux VD",
-      "url": "https://www.chillon.ch/monagenda/nuit-de-lepouvante-3/",
-      "source": "Château de Chillon",
-      "country": "CH"
-    },
-    {
-      "name": "En famille aux musées au Château de Chillon",
-      "date_start": "2027-11-06",
-      "date_end": "2027-11-07",
-      "location": "Château de Chillon, Veytaux VD",
-      "url": "https://www.chillon.ch/monagenda/en-famille-aux-musees-au-chateau-de-chillon/",
-      "source": "Château de Chillon",
-      "country": "CH"
-    },
-    {
-      "name": "100 ans de l'Association suisse des châteaux forts",
-      "date_start": "2027-11-21",
+      "name": "Mittelalter Weihnachtsmarkt am Rheinfall 2027",
+      "date_start": "2027-11-19",
       "date_end": "2027-11-21",
-      "location": "Château de Chillon, Veytaux VD",
-      "url": "https://www.chillon.ch/monagenda/100-ans-de-lassociation-suisse-des-chateaux-forts/",
-      "source": "Château de Chillon",
-      "country": "CH"
-    },
-    {
-      "name": "Noël médiéval à Chillon",
-      "date_start": "2027-11-27",
-      "date_end": "2027-12-12",
-      "location": "Château de Chillon, Veytaux VD",
-      "url": "https://www.chillon.ch/monagenda/noel-medieval-a-chillon/",
-      "source": "Château de Chillon",
-      "country": "CH"
-    },
-    {
-      "name": "Noël Drako",
-      "date_start": "2027-12-08",
-      "date_end": "2027-12-08",
-      "location": "Château de Chillon, Veytaux VD",
-      "url": "https://www.chillon.ch/monagenda/noel-drako-3/",
-      "source": "Château de Chillon",
+      "location": "Schloss Laufen (ZH) und Schlössli Wörth (SH)",
+      "url": "https://www.turnei.ch/events-gaesteinfo/mittelalter-weihnachtsmarkt-am-rheinfall-2027",
+      "source": "Turnei (Hinwil, Winterthur, Wattwil, Laufen, Bubikon…)",
       "country": "CH"
     }
   ]
